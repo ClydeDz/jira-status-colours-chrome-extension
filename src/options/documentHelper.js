@@ -1,12 +1,13 @@
+import { appendChild, createElement, getElementById } from "../common/document";
 
-export const createJiraStatusInput = (id, defaultSettingKey) => {
-    const jiraStatusInput = document.createElement("input");
+export function createJiraStatusInput(id, defaultSettingKey) {
+    const jiraStatusInput = createElement("input");
     jiraStatusInput.type = "text";
     jiraStatusInput.id = `JiraStatus-${id}`;
-    jiraStatusInput.addEventListener("change", (event) => {
-        document.getElementById(`SampleOutput-${id}`).innerText = event.target.value;
-    });
     jiraStatusInput.style = "text-transform:uppercase";
+    jiraStatusInput.addEventListener("change", (event) => {
+        getElementById(`SampleOutput-${id}`).innerText = event.target.value;
+    });    
 
     if(defaultSettingKey) {
         jiraStatusInput.value = defaultSettingKey;
@@ -15,12 +16,12 @@ export const createJiraStatusInput = (id, defaultSettingKey) => {
     return jiraStatusInput;
 }
 
-export const createBackgroundColourInput = (id, defaultSettingValue) => {
-    const backgroundColourInput = document.createElement("input");
+export function createBackgroundColourPickerInput(id, defaultSettingValue) {
+    const backgroundColourInput = createElement("input");
     backgroundColourInput.type = "color";
     backgroundColourInput.id = `BackgroundColour-${id}`;
     backgroundColourInput.addEventListener("change", (event) => {
-        document.getElementById(`SampleOutput-${id}`).style.backgroundColor = event.target.value;
+        getElementById(`SampleOutput-${id}`).style.backgroundColor = event.target.value;
     });
 
     if(defaultSettingValue) {
@@ -30,12 +31,12 @@ export const createBackgroundColourInput = (id, defaultSettingValue) => {
     return backgroundColourInput;
 }
 
-export const createTextColourInput = (id, defaultSettingValue) => {
-    const textColourInput = document.createElement("input");
+export function createTextColourPickerInput(id, defaultSettingValue) {
+    const textColourInput = createElement("input");
     textColourInput.type = "color";
     textColourInput.id = `TextColour-${id}`;
     textColourInput.addEventListener("change", (event) => {
-        document.getElementById(`SampleOutput-${id}`).style.color = event.target.value;
+        getElementById(`SampleOutput-${id}`).style.color = event.target.value;
     });
 
     if(defaultSettingValue) {
@@ -45,8 +46,8 @@ export const createTextColourInput = (id, defaultSettingValue) => {
     return textColourInput;
 }
 
-export const createDeleteButton = (id) => {
-    const deleteButton = document.createElement("button");
+export function createDeleteButton(id) {
+    const deleteButton = createElement("button");
     deleteButton.type = "button";
     deleteButton.id = `DeleteButton-${id}`;
     deleteButton.innerText = "Delete";
@@ -57,8 +58,8 @@ export const createDeleteButton = (id) => {
     return deleteButton;
 }
 
-export const createSampleOutput = (id, defaultSettingValue, defaultSettingKey) => {
-    const sampleOutput = document.createElement("span");
+export function createPreviewLabel(id, defaultSettingValue, defaultSettingKey) {
+    const sampleOutput = createElement("span");
     sampleOutput.id = `SampleOutput-${id}`;
     sampleOutput.className = "sample-output";
 
@@ -71,21 +72,28 @@ export const createSampleOutput = (id, defaultSettingValue, defaultSettingKey) =
     return sampleOutput;
 }
 
-export const createRow = (id, parentElement, defaultSettingValue, defaultSettingKey) => {
+export function createLineBreak() {
+    return createElement("br");
+}
+
+export function createDiv() {
+    return createElement("div");
+}
+
+export function createRow(id, parentElement, defaultSettingValue, defaultSettingKey) {
     const jiraStatusInput = createJiraStatusInput(id, defaultSettingKey);
-    const backgroundColourInput = createBackgroundColourInput(id, defaultSettingValue);
-    const textColourInput = createTextColourInput(id, defaultSettingValue);
+    const backgroundColourPickerInput = createBackgroundColourPickerInput(id, defaultSettingValue);
+    const textColourPickerInput = createTextColourPickerInput(id, defaultSettingValue);
     const deleteButton = createDeleteButton(id);
-    const sampleOutput = createSampleOutput(id, defaultSettingValue, defaultSettingKey);   
-    const lineBreak = document.createElement("br");
-    const rowContainer = document.createElement("div");
+    const previewLabel = createPreviewLabel(id, defaultSettingValue, defaultSettingKey);   
+    const lineBreak = createLineBreak();
+    const rowContainer = createDiv();
 
-    rowContainer.appendChild(jiraStatusInput);
-    rowContainer.appendChild(backgroundColourInput);
-    rowContainer.appendChild(textColourInput);
-    rowContainer.appendChild(deleteButton);
-    rowContainer.appendChild(sampleOutput);
-    rowContainer.appendChild(lineBreak);
-
-    parentElement.appendChild(rowContainer);
+    appendChild(rowContainer, jiraStatusInput);
+    appendChild(rowContainer, backgroundColourPickerInput);
+    appendChild(rowContainer, textColourPickerInput);
+    appendChild(rowContainer, deleteButton);
+    appendChild(rowContainer, previewLabel);
+    appendChild(rowContainer, lineBreak);
+    appendChild(parentElement, rowContainer);
 }

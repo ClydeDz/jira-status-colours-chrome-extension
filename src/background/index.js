@@ -1,9 +1,9 @@
 import { getStorage } from "../common/storage";
-import { defaults, chromeSyncStorageKey } from "../common/settings";
+import { presetConfiguration, chromeSyncStorageKey } from "../common/settings";
 import { initializeDocument, getJiraStatusLabels, updateJiraStatusStyle } from "../common/document";
 
 export function applyStyle(result) {
-    const savedConfiguration = result || defaults;
+    const savedConfiguration = result || presetConfiguration;
     const elements = getJiraStatusLabels();
 
     for (let i = 0; i < elements.length; i++) {
