@@ -14,3 +14,4 @@ export const defaults = {
 };
 
 export const rowCount = 0;
+export const chromeSyncStorageKey = "Jira-Status-Colours-Configuration";
