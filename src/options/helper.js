@@ -1,7 +1,7 @@
 import { getElementById } from "../common/document";
 import { rowCount, chromeSyncStorageKey } from "../common/settings";
 import { setStorage } from "../common/storage";
-import { createRow } from "./documentHelper";
+import { createRow } from "./componentHelper";
 
 export function addConfigurationRow() {
     rowCount++;
