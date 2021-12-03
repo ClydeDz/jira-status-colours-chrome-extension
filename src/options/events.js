@@ -1,7 +1,9 @@
 import { getElementById } from "../common/document";
-import { rowCount, chromeSyncStorageKey } from "../common/settings";
 import { setStorage } from "../common/storage";
-import { createRow } from "./componentHelper";
+import { createRow } from "./componentCreator";
+import { presetConfiguration, rowCount, chromeSyncStorageKey } from "../common/settings";
+import { addConfigurationRow, saveConfiguration } from "./events";
+import * as self from "./events";
 
 export function addConfigurationRow() {
     rowCount++;
@@ -31,4 +33,19 @@ export function saveConfiguration() {
         };
     }
     setStorage(chromeSyncStorageKey, updatedConfiguration);
+}
+
+export function startup(result) {
+    const savedConfiguration = result || presetConfiguration;        
+    const parentElement = getElementById("Configuration");
+
+    for (let key of Object.keys(savedConfiguration)) {
+        rowCount++;
+        createRow(rowCount, parentElement, savedConfiguration[key], key);
+    }
+}
+
+export function initializeEventListenersForOptions() {
+    getElementById("SaveConfiguration").addEventListener("click", self.saveConfiguration);
+    getElementById("AddConfigurationRow").addEventListener("click", self.addConfigurationRow);
 }

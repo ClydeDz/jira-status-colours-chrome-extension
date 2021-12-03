@@ -1,4 +1,5 @@
 import { appendChild, createElement, getElementById } from "../common/document";
+import * as self from "./componentCreator";
 
 export function createJiraStatusInput(id, defaultSettingKey) {
     const jiraStatusInput = createElement("input");
@@ -81,13 +82,13 @@ export function createDiv() {
 }
 
 export function createRow(id, parentElement, defaultSettingValue, defaultSettingKey) {
-    const jiraStatusInput = createJiraStatusInput(id, defaultSettingKey);
-    const backgroundColourPickerInput = createBackgroundColourPickerInput(id, defaultSettingValue);
-    const textColourPickerInput = createTextColourPickerInput(id, defaultSettingValue);
-    const deleteButton = createDeleteButton(id);
-    const previewLabel = createPreviewLabel(id, defaultSettingValue, defaultSettingKey);   
-    const lineBreak = createLineBreak();
-    const rowContainer = createDiv();
+    const jiraStatusInput = self.createJiraStatusInput(id, defaultSettingKey);
+    const backgroundColourPickerInput = self.createBackgroundColourPickerInput(id, defaultSettingValue);
+    const textColourPickerInput = self.createTextColourPickerInput(id, defaultSettingValue);
+    const deleteButton = self.createDeleteButton(id);
+    const previewLabel = self.createPreviewLabel(id, defaultSettingValue, defaultSettingKey);   
+    const lineBreak = self.createLineBreak();
+    const rowContainer = self.createDiv();
 
     appendChild(rowContainer, jiraStatusInput);
     appendChild(rowContainer, backgroundColourPickerInput);
