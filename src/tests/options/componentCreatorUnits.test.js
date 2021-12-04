@@ -1,10 +1,160 @@
-import { createDiv, createLineBreak, createPreviewLabel } from "../../options/componentCreator";
+import { createJiraStatusInput, createBackgroundColourPickerInput, createDeleteButton, createDiv, createLineBreak, createPreviewLabel, createTextColourPickerInput } from "../../options/componentCreator";
 import * as documentModuleSpy from "../../common/document";
 
 const createElementSpy = jest.spyOn(documentModuleSpy, "createElement")
     .mockImplementation(jest.fn());
 
+describe("componentCreator → createJiraStatusInput", () => {
+    beforeEach(() => {
+        jest.resetAllMocks();
+    });
 
+    it.each([
+        [null],
+        [undefined],
+        ["key"]
+    ])("should create a jira status text box %o", (mockKey) => {
+        const mockEventListener = jest.fn();
+        const mockInput = {element: "input", addEventListener: mockEventListener};
+        createElementSpy.mockReturnValueOnce(mockInput);
+
+        const jiraStatusInput = createJiraStatusInput(1, mockKey);
+
+        expect(createElementSpy).toHaveBeenCalledWith("input");
+        expect(jiraStatusInput).toBe(mockInput);
+        expect(jiraStatusInput.id).toBe("JiraStatus-1");
+        expect(jiraStatusInput.type).toBe("text");
+        expect(mockEventListener).toHaveBeenCalledWith("change", expect.any(Function));
+    });
+
+    it("should not set value", () => {
+        const mockEventListener = jest.fn();
+        const mockInput = {element: "input", addEventListener: mockEventListener};
+        createElementSpy.mockReturnValueOnce(mockInput);
+
+        const jiraStatusInput = createJiraStatusInput(1, undefined);
+
+        expect(jiraStatusInput.value).not.toBeDefined();
+    });
+
+    it("should set value", () => {
+        const mockEventListener = jest.fn();
+        const mockInput = {element: "input", addEventListener: mockEventListener};
+        createElementSpy.mockReturnValueOnce(mockInput);
+
+        const jiraStatusInput = createJiraStatusInput(1, "done");
+
+        expect(jiraStatusInput.value).toBe("done");
+    });
+});
+
+describe("componentCreator → createBackgroundColourPickerInput", () => {
+    beforeEach(() => {
+        jest.resetAllMocks();
+    });
+
+    it.each([
+        [null],
+        [undefined],
+        [{ backgroundColour: "red", textColour: "blue"}]
+    ])("should create a colour picker input %o", (mockConfiguration) => {
+        const mockEventListener = jest.fn();
+        const mockInput = {element: "input", addEventListener: mockEventListener};
+        createElementSpy.mockReturnValueOnce(mockInput);
+
+        const backgroundColourPicker = createBackgroundColourPickerInput(1, mockConfiguration);
+
+        expect(createElementSpy).toHaveBeenCalledWith("input");
+        expect(backgroundColourPicker).toBe(mockInput);
+        expect(backgroundColourPicker.type).toBe("color");
+        expect(backgroundColourPicker.id).toBe("BackgroundColour-1");
+        expect(mockEventListener).toHaveBeenCalledWith("change", expect.any(Function));
+    });
+
+    it("should not set value", () => {
+        const mockEventListener = jest.fn();
+        const mockInput = {element: "input", addEventListener: mockEventListener};
+        createElementSpy.mockReturnValueOnce(mockInput);
+
+        const backgroundColourPicker = createBackgroundColourPickerInput(1, undefined);
+
+        expect(backgroundColourPicker.value).not.toBeDefined();
+    });
+
+    it("should set value", () => {
+        const mockEventListener = jest.fn();
+        const mockInput = {element: "input", addEventListener: mockEventListener};
+        createElementSpy.mockReturnValueOnce(mockInput);
+
+        const backgroundColourPicker = createBackgroundColourPickerInput(1, { backgroundColour: "red", textColour: "blue"});
+
+        expect(backgroundColourPicker.value).toBe("red");
+    });
+});
+
+describe("componentCreator → createTextColourPickerInput", () => {
+    beforeEach(() => {
+        jest.resetAllMocks();
+    });
+
+    it.each([
+        [null],
+        [undefined],
+        [{ backgroundColour: "red", textColour: "blue"}]
+    ])("should create a colour picker input %o", (mockConfiguration) => {
+        const mockEventListener = jest.fn();
+        const mockInput = {element: "deleteButton", addEventListener: mockEventListener};
+        createElementSpy.mockReturnValueOnce(mockInput);
+
+        const textColourPicker = createTextColourPickerInput(1, mockConfiguration);
+
+        expect(createElementSpy).toHaveBeenCalledWith("input");
+        expect(textColourPicker).toBe(mockInput);
+        expect(textColourPicker.id).toBe("TextColour-1");
+        expect(textColourPicker.type).toBe("color");
+        expect(mockEventListener).toHaveBeenCalledWith("change", expect.any(Function));
+    });
+
+    it("should not set value", () => {
+        const mockEventListener = jest.fn();
+        const mockInput = {element: "deleteButton", addEventListener: mockEventListener};
+        createElementSpy.mockReturnValueOnce(mockInput);
+
+        const textColourPicker = createTextColourPickerInput(1, undefined);
+
+        expect(textColourPicker.value).not.toBeDefined();
+    });
+
+    it("should set value", () => {
+        const mockEventListener = jest.fn();
+        const mockInput = {element: "deleteButton", addEventListener: mockEventListener};
+        createElementSpy.mockReturnValueOnce(mockInput);
+
+        const textColourPicker = createTextColourPickerInput(1, { backgroundColour: "red", textColour: "blue"});
+
+        expect(textColourPicker.value).toBe("blue");
+    });
+});
+
+describe("componentCreator → createDeleteButton", () => {
+    beforeEach(() => {
+        jest.resetAllMocks();
+    });
+
+    it("should create a delete button", () => {
+        const mockEventListener = jest.fn();
+        const mockDeleteButton = {element: "deleteButton", addEventListener: mockEventListener};
+        createElementSpy.mockReturnValueOnce(mockDeleteButton);
+
+        const deleteButton = createDeleteButton(1);
+
+        expect(createElementSpy).toHaveBeenCalledWith("button");
+        expect(deleteButton).toBe(mockDeleteButton);
+        expect(deleteButton.id).toBe("DeleteButton-1");
+        expect(mockEventListener).toHaveBeenCalledWith("click", expect.any(Function));
+    });
+});
+    
 describe("componentCreator → createPreviewLabel", () => {
     beforeEach(() => {
         jest.resetAllMocks();
