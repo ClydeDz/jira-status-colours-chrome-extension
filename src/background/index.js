@@ -1,7 +1,9 @@
-import * as documentModule from "./document";
-import * as startModule from "./start";
+import { getStorage } from "../common/storage";
+import { chromeSyncStorageKey } from "../common/settings";
+import { initializeDocument } from "../common/document";
+import { applyStyle} from "./style";
 
-setTimeout(function() {
-    documentModule.initializeDocument(document);
-    startModule.start();
-}, 500);
+window.onload = function() {
+    initializeDocument(document);
+    getStorage(chromeSyncStorageKey, applyStyle);
+}
