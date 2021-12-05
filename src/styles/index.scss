@@ -1,22 +1,51 @@
-.amazon-goodreads-ext-container {
-    z-index: 9999;
-    margin: 0 0 12px 0;
-    padding: 0 9px;
+$dark-gray: #6B6B6B;
+$font-family: 'Roboto', 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+
+body {
+    margin: 0;
+    color: $dark-gray;
+    font-family: $font-family;
 }
 
-.amazon-goodreads-ext-button {
-    background-color: #372213;
-    border: 0;
-    color: #fff;
+h1, h3 {
+    color: $dark-gray;
+    font-weight: initial;
+    margin: 0;
+}
+
+h1 {
+    font-size: 3.8em;    
+    margin: 0 0 9px 0;
+}
+
+header {
+    background-image: url('../icons/header.png');
+    background-size: 90px;
+    background-repeat: repeat-x;
+    min-height: 25px;
+}
+
+main {
+    margin: 0 8px;
+    padding: 9px;
+}
+
+.product-banner {
+    display: inline-block;
     width: 100%;
-    padding: 6px 2px;
-    border-radius: 34px;
+    margin-right: 18px;
+    margin-bottom: 18px;
+
+    img {
+        float: left;
+        margin-right: 18px;
+    }
+
+    & > div {
+        float: left;
+    }
 }
 
-.amazon-goodreads-ext-button.amazon-goodreads-ext-mobile {
-    padding: 14px 0;
-}
-
-.amazon-goodreads-ext-button:hover {
-    background-color: #372213e3;
+#configuration {
+    display: block;
 }
