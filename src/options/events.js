@@ -6,8 +6,8 @@ import * as self from "./events";
 
 export function addConfigurationRow() {
     incrementRowCount();
-    const configuration = getElementById("Configuration");
-    createRow(rowCount, configuration, undefined);
+    const parentElement = getElementById("Configuration");
+    createRow(rowCount, parentElement, undefined);
 }
 
 export function saveConfiguration() {

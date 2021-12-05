@@ -214,22 +214,22 @@ describe("componentCreator → createPreviewLabel", () => {
     });
 });
     
-describe("componentCreator → createLineBreak", () => {
+describe("componentCreator → createTableCell", () => {
     beforeEach(() => {
         jest.resetAllMocks();
     });
 
     it.each([
-        [{ className: "mockBr" }],
+        [{ className: "td" }],
         [null],
         [undefined],
-    ])("should create a line break br %o", (mockBrValue) => {
-        createElementSpy.mockReturnValueOnce(mockBrValue);        
+    ])("should create a table cell td %o", (mockTdValue) => {
+        createElementSpy.mockReturnValueOnce(mockTdValue);        
 
-        const lineBreak = componentCreatorModule.createLineBreak();
+        const lineBreak = componentCreatorModule.createTableCell();
 
-        expect(lineBreak).toBe(mockBrValue);
-        expect(createElementSpy).toHaveBeenCalledWith("br");
+        expect(lineBreak).toBe(mockTdValue);
+        expect(createElementSpy).toHaveBeenCalledWith("td");
     });
 });
 
@@ -239,15 +239,15 @@ describe("componentCreator → createDiv", () => {
     });
 
     it.each([
-        [{ className: "mockDiv" }],
+        [{ className: "tr" }],
         [null],
         [undefined],
-    ])("should create a div %o", (mockDivValue) => {
-        createElementSpy.mockReturnValueOnce(mockDivValue);        
+    ])("should create a table row tr %o", (mockTrValue) => {
+        createElementSpy.mockReturnValueOnce(mockTrValue);        
 
-        const div = componentCreatorModule.createDiv();
+        const div = componentCreatorModule.createTableRow();
 
-        expect(div).toBe(mockDivValue);
-        expect(createElementSpy).toHaveBeenCalledWith("div");
+        expect(div).toBe(mockTrValue);
+        expect(createElementSpy).toHaveBeenCalledWith("tr");
     });
 });

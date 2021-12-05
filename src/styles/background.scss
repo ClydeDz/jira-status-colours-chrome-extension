@@ -10,6 +10,7 @@ body {
     margin: 0;
     color: $dark-gray;
     font-family: $font-family;
+    font-size: 12px;
 }
 
 h1, h3 {
@@ -52,14 +53,25 @@ main {
 
 #Configuration {
     display: block;
-    
-    input, button, span {
-        margin-right: 9px;
+
+    td, th {
+        padding: 2px 4px 2px 0;
     }
 
-    & > div {
-        margin-bottom: 2px;
+    th {
+        font-weight: normal;
+        color: $dark-gray;
+        text-align: left;
+        font-size: small;
     }
+
+    th:nth-child(3), th:nth-child(4) {
+        width: 100px;
+    }
+    
+    // input, button, span {
+    //     margin-right: 9px;
+    // }
 
     & + div {
         margin-top: 18px;
@@ -78,9 +90,8 @@ input[type=text] {
 }
 
 input[type=color] {
-    position: relative;
-    top: 3px;
     border: none;
+    width: 100%;
 
     &:focus, &:hover {
         background-color: darken($light-gray, 5%);
@@ -140,6 +151,7 @@ button {
     text-align: center;
     line-height: 10px;
     font-family: $font-family-alt;
+    font-size: small;
 }
 
 .icon-btn-secondary {
@@ -153,7 +165,7 @@ button {
 .icon-delete {
     position: relative;
     top: 2px;
-    
+
     &::after {
         display: inline-block;
         content: "\00d7";

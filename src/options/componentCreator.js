@@ -54,7 +54,7 @@ export function createDeleteButton(id) {
     deleteButton.ariaLabel = "Delete";
     deleteButton.className = "icon-btn-secondary icon-delete";
     deleteButton.addEventListener("click", (event) => {
-        const row = event.target.parentElement;
+        const row = event.target.parentElement.parentElement;
         row.parentElement.removeChild(row);
     });
     return deleteButton;
@@ -74,12 +74,12 @@ export function createPreviewLabel(id, defaultSettingValue, defaultSettingKey) {
     return sampleOutput;
 }
 
-export function createLineBreak() {
-    return createElement("br");
+export function createTableRow() {
+    return createElement("tr");
 }
 
-export function createDiv() {
-    return createElement("div");
+export function createTableCell() {
+    return createElement("td");
 }
 
 export function createRow(id, parentElement, defaultSettingValue, defaultSettingKey) {
@@ -88,14 +88,27 @@ export function createRow(id, parentElement, defaultSettingValue, defaultSetting
     const textColourPickerInput = self.createTextColourPickerInput(id, defaultSettingValue);
     const deleteButton = self.createDeleteButton(id);
     const previewLabel = self.createPreviewLabel(id, defaultSettingValue, defaultSettingKey);   
-    const lineBreak = self.createLineBreak();
-    const rowContainer = self.createDiv();
+    
+    const tableRow = createTableRow();
+    appendChild(parentElement, tableRow);
 
-    appendChild(rowContainer, deleteButton);
-    appendChild(rowContainer, jiraStatusInput);
-    appendChild(rowContainer, backgroundColourPickerInput);
-    appendChild(rowContainer, textColourPickerInput);    
-    appendChild(rowContainer, previewLabel);
-    appendChild(rowContainer, lineBreak);
-    appendChild(parentElement, rowContainer);
+    const tableColumnOne = createTableCell();
+    appendChild(tableColumnOne, deleteButton);
+    appendChild(tableRow, tableColumnOne);
+
+    const tableColumnTwo = createTableCell();
+    appendChild(tableColumnTwo, jiraStatusInput);
+    appendChild(tableRow, tableColumnTwo);
+
+    const tableColumnThree = createTableCell();
+    appendChild(tableColumnThree, backgroundColourPickerInput);
+    appendChild(tableRow, tableColumnThree);
+
+    const tableColumnFour = createTableCell();
+    appendChild(tableColumnFour, textColourPickerInput);
+    appendChild(tableRow, tableColumnFour);
+
+    const tableColumnFive = createTableCell();
+    appendChild(tableColumnFive, previewLabel);
+    appendChild(tableRow, tableColumnFive);    
 }
