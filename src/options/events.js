@@ -18,11 +18,11 @@ export function saveConfiguration() {
         const backgroundColourPicker = getElementById(`BackgroundColour-${i}`);
         const textColourPicker = getElementById(`TextColour-${i}`);
 
-        if(!previewPane) {
+        if(!previewPane || !backgroundColourPicker || !textColourPicker) {
             continue;
         }
 
-        if(!previewPane.innerText && !previewPane.style.backgroundColor && !previewPane.style.color) {
+        if(!previewPane.innerText || !previewPane.style.backgroundColor || !previewPane.style.color) {            
             continue;
         }
 

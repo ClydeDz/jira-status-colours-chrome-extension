@@ -4,7 +4,6 @@ import {
     getElementById,
     querySelectorAll,
     createElement,
-    createElement,
     appendChild
 } from "../mocks/documentMock";
 
@@ -27,9 +26,9 @@ describe("document → updateJiraStatusStyle", () => {
     }); 
 
     test("updateJiraStatusStyle method called", () => {
-        var abc = {};
+        var abc = { style: {} };
         var configuration = {
-            backgroundColor: "red",
+            backgroundColour: "red",
             textColour: "blue",
         };
         var element = documentModule.updateJiraStatusStyle(abc, configuration);
@@ -58,7 +57,7 @@ describe("document → createElement", () => {
 
     test("createElement method called", () => {
         documentModule.createElement("div");
-        expect(createElement).toHaveBeenCalledWith(div);
+        expect(createElement).toHaveBeenCalledWith("div");
     });
 });
 

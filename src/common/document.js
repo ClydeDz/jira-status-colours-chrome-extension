@@ -5,7 +5,7 @@ export function initializeDocument(injectedDocument) {
 }
 
 export function getJiraStatusLabels() {
-    return document.querySelectorAll(".ghx-heading .ghx-info > span");
+    return doc.querySelectorAll(".ghx-heading .ghx-info > span");
 }
 
 export function updateJiraStatusStyle(element, configuration) {
