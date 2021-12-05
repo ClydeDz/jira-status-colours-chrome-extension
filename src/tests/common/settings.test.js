@@ -9,9 +9,13 @@ describe("settings", () => {
     expect(settingsModule.chromeSyncStorageKey).toBe("Jira-Status-Colours-Configuration");
   });
 
-  test("can increment row count", () => {      
+  test("can fetch row count value", () => {      
     expect(settingsModule.rowCount).toBe(0);
-    settingsModule.rowCount++;
+  });
+
+  test("can increment row count", () => {      
+    settingsModule.rowCount = 0;
+    settingsModule.incrementRowCount()
     expect(settingsModule.rowCount).toBe(1);
   });
 

@@ -1,5 +1,9 @@
 export const chromeSyncStorageKey = "Jira-Status-Colours-Configuration";
-export const rowCount = 0;
+export let rowCount = 0;
+
+export const incrementRowCount = () => {
+    rowCount++;
+}
 
 export const presetConfiguration = {
     "IN PROGRESS": {

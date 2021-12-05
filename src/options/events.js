@@ -1,12 +1,11 @@
 import { getElementById } from "../common/document";
 import { setStorage } from "../common/storage";
 import { createRow } from "./componentCreator";
-import { presetConfiguration, rowCount, chromeSyncStorageKey } from "../common/settings";
-import { addConfigurationRow, saveConfiguration } from "./events";
+import { presetConfiguration, rowCount, chromeSyncStorageKey, incrementRowCount } from "../common/settings";
 import * as self from "./events";
 
 export function addConfigurationRow() {
-    rowCount++;
+    incrementRowCount();
     const configuration = getElementById("Configuration");
     createRow(rowCount, configuration, undefined);
 }
@@ -40,7 +39,7 @@ export function startup(result) {
     const parentElement = getElementById("Configuration");
 
     for (let key of Object.keys(savedConfiguration)) {
-        rowCount++;
+        incrementRowCount();
         createRow(rowCount, parentElement, savedConfiguration[key], key);
     }
 }
