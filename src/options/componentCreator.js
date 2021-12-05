@@ -52,6 +52,7 @@ export function createDeleteButton(id) {
     deleteButton.type = "button";
     deleteButton.id = `DeleteButton-${id}`;
     deleteButton.innerText = "Delete";
+    deleteButton.className = "btn-secondary";
     deleteButton.addEventListener("click", (event) => {
         const row = event.target.parentElement;
         row.parentElement.removeChild(row);
@@ -62,7 +63,7 @@ export function createDeleteButton(id) {
 export function createPreviewLabel(id, defaultSettingValue, defaultSettingKey) {
     const sampleOutput = createElement("span");
     sampleOutput.id = `SampleOutput-${id}`;
-    sampleOutput.className = "sample-output";
+    sampleOutput.className = "preview-label";
 
     if(defaultSettingValue && defaultSettingKey) {
         sampleOutput.innerText = defaultSettingKey;

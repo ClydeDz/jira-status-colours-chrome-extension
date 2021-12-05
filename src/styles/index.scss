@@ -1,4 +1,7 @@
 $dark-gray: #6B6B6B;
+$light-gray: #F4F5F7;
+$blue: #2684FF;
+
 $font-family: 'Roboto', 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 
 body {
@@ -33,8 +36,7 @@ main {
 .product-banner {
     display: inline-block;
     width: 100%;
-    margin-right: 18px;
-    margin-bottom: 18px;
+    margin: 27px 18px 27px 0px;
 
     img {
         float: left;
@@ -46,6 +48,90 @@ main {
     }
 }
 
-#configuration {
+#Configuration {
     display: block;
+    
+    input, button {
+        margin-right: 9px;
+    }
+
+    & > div {
+        margin-bottom: 2px;
+    }
+
+    & + div {
+        margin-top: 18px;
+
+        & > button {
+            margin-right: 9px;
+        }        
+    }
+}
+
+input[type=color], 
+input[type=text] {
+    margin: 2px;
+    border-radius: 3px;
+    background-color: $light-gray;
+}
+
+input[type=color] {
+    position: relative;
+    top: 3px;
+    border: none;
+
+    &:focus, &:hover {
+        background-color: darken($light-gray, 5%);
+        cursor: pointer;
+    }
+}
+
+input[type=text] {
+    outline: none;
+    border: 1px solid $light-gray;
+    padding: 5px 24px 5px 10px;
+    color: $dark-gray;
+
+    &:focus {
+        background-color: white;
+        border-color: $blue;        
+    }
+}
+
+button {
+    border: none;
+    outline: 0;
+    border-radius: 3px;
+    padding: 8px 10px;
+    min-width: 60px;
+
+    &:hover {
+        cursor: pointer;
+    }
+    
+    &.btn-secondary {
+        color: $dark-gray;
+        background: $light-gray;        
+        
+        &:hover {
+            background: darken($light-gray, 5%);
+        }
+    }
+    
+    &.btn-primary {
+        color: white;
+        background: $blue;
+
+        &:hover {
+            background: darken($blue, 5%);
+        }
+    }
+}
+
+.preview-label {
+    padding: 4px 10px;
+    border-radius: 3px;
+    border: 1px solid $dark-gray;
+    margin: 0 4px;
+    text-transform: uppercase;
 }
