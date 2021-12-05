@@ -68,10 +68,6 @@ main {
     th:nth-child(3), th:nth-child(4) {
         width: 100px;
     }
-    
-    // input, button, span {
-    //     margin-right: 9px;
-    // }
 
     & + div {
         margin-top: 18px;
@@ -102,7 +98,7 @@ input[type=color] {
 input[type=text] {
     outline: none;
     border: 1px solid $light-gray;
-    padding: 5px 24px 5px 10px;
+    padding: 5px 10px;
     color: $dark-gray;
 
     &:focus {
@@ -142,7 +138,7 @@ button {
 }
 
 .preview-label {
-    padding: 4px;
+    padding: 2px 4px;
     border-radius: 3px;
     border: 1px solid $dark-gray;
     margin: 0 4px;
