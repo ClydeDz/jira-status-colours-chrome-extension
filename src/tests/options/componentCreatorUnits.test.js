@@ -148,9 +148,10 @@ describe("componentCreator → createDeleteButton", () => {
 
         const deleteButton = componentCreatorModule.createDeleteButton(1);
 
-        expect(createElementSpy).toHaveBeenCalledWith("button");
+        expect(createElementSpy).toHaveBeenCalledWith("span");
         expect(deleteButton).toBe(mockDeleteButton);
         expect(deleteButton.id).toBe("DeleteButton-1");
+        expect(deleteButton.className).toBe("icon-btn-secondary icon-delete");
         expect(mockEventListener).toHaveBeenCalledWith("click", expect.any(Function));
     });
 });

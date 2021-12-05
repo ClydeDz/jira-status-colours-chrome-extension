@@ -48,11 +48,11 @@ export function createTextColourPickerInput(id, defaultSettingValue) {
 }
 
 export function createDeleteButton(id) {
-    const deleteButton = createElement("button");
-    deleteButton.type = "button";
+    const deleteButton = createElement("span");
     deleteButton.id = `DeleteButton-${id}`;
-    deleteButton.innerText = "Delete";
-    deleteButton.className = "btn-secondary";
+    deleteButton.innerText = "";
+    deleteButton.ariaLabel = "Delete";
+    deleteButton.className = "icon-btn-secondary icon-delete";
     deleteButton.addEventListener("click", (event) => {
         const row = event.target.parentElement;
         row.parentElement.removeChild(row);
@@ -91,10 +91,10 @@ export function createRow(id, parentElement, defaultSettingValue, defaultSetting
     const lineBreak = self.createLineBreak();
     const rowContainer = self.createDiv();
 
+    appendChild(rowContainer, deleteButton);
     appendChild(rowContainer, jiraStatusInput);
     appendChild(rowContainer, backgroundColourPickerInput);
-    appendChild(rowContainer, textColourPickerInput);
-    appendChild(rowContainer, deleteButton);
+    appendChild(rowContainer, textColourPickerInput);    
     appendChild(rowContainer, previewLabel);
     appendChild(rowContainer, lineBreak);
     appendChild(parentElement, rowContainer);

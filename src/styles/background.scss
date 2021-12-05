@@ -1,6 +1,7 @@
 $dark-gray: #6B6B6B;
 $light-gray: #F4F5F7;
 $blue: #2684FF;
+$red: #ff6c4b;
 
 $font-family: 'Roboto', 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 $font-family-alt: -apple-system, BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,'Fira Sans','Droid Sans','Helvetica Neue',sans-serif;
@@ -52,7 +53,7 @@ main {
 #Configuration {
     display: block;
     
-    input, button {
+    input, button, span {
         margin-right: 9px;
     }
 
@@ -139,4 +140,27 @@ button {
     text-align: center;
     line-height: 10px;
     font-family: $font-family-alt;
+}
+
+.icon-btn-secondary {
+    color: $dark-gray;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.icon-delete {
+    position: relative;
+    top: 2px;
+    
+    &::after {
+        display: inline-block;
+        content: "\00d7";
+        font-size: x-large;
+    }
+
+    &:hover {
+        color: $red;
+    }
 }
