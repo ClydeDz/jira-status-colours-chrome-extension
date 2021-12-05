@@ -3,7 +3,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
 	entry: {
-	  "background": ["./src/background/index.js", "./src/styles/index.scss"],
+	  "background": ["./src/background/index.js", "./src/styles/background.scss"],
 	  "options": ["./src/options/index.js"],
 	},
 	output: {
@@ -19,7 +19,7 @@ module.exports = {
 					{
 						loader: "file-loader",
 						options: {
-							name: "content.css",
+							name: "[name].css",
 						}
 					},
 					{
