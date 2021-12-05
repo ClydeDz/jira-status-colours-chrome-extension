@@ -1,7 +1,7 @@
-import { createJiraStatusInput, createBackgroundColourPickerInput, createDeleteButton, createDiv, createLineBreak, createPreviewLabel, createTextColourPickerInput } from "../../options/componentCreator";
-import * as documentModuleSpy from "../../common/document";
+import * as componentCreatorModule from "../../options/componentCreator";
+import * as documentModule from "../../common/document";
 
-const createElementSpy = jest.spyOn(documentModuleSpy, "createElement")
+const createElementSpy = jest.spyOn(documentModule, "createElement")
     .mockImplementation(jest.fn());
 
 describe("componentCreator → createJiraStatusInput", () => {
@@ -18,7 +18,7 @@ describe("componentCreator → createJiraStatusInput", () => {
         const mockInput = {element: "input", addEventListener: mockEventListener};
         createElementSpy.mockReturnValueOnce(mockInput);
 
-        const jiraStatusInput = createJiraStatusInput(1, mockKey);
+        const jiraStatusInput = componentCreatorModule.createJiraStatusInput(1, mockKey);
 
         expect(createElementSpy).toHaveBeenCalledWith("input");
         expect(jiraStatusInput).toBe(mockInput);
@@ -32,7 +32,7 @@ describe("componentCreator → createJiraStatusInput", () => {
         const mockInput = {element: "input", addEventListener: mockEventListener};
         createElementSpy.mockReturnValueOnce(mockInput);
 
-        const jiraStatusInput = createJiraStatusInput(1, undefined);
+        const jiraStatusInput = componentCreatorModule.createJiraStatusInput(1, undefined);
 
         expect(jiraStatusInput.value).not.toBeDefined();
     });
@@ -42,7 +42,7 @@ describe("componentCreator → createJiraStatusInput", () => {
         const mockInput = {element: "input", addEventListener: mockEventListener};
         createElementSpy.mockReturnValueOnce(mockInput);
 
-        const jiraStatusInput = createJiraStatusInput(1, "done");
+        const jiraStatusInput = componentCreatorModule.createJiraStatusInput(1, "done");
 
         expect(jiraStatusInput.value).toBe("done");
     });
@@ -62,7 +62,7 @@ describe("componentCreator → createBackgroundColourPickerInput", () => {
         const mockInput = {element: "input", addEventListener: mockEventListener};
         createElementSpy.mockReturnValueOnce(mockInput);
 
-        const backgroundColourPicker = createBackgroundColourPickerInput(1, mockConfiguration);
+        const backgroundColourPicker = componentCreatorModule.createBackgroundColourPickerInput(1, mockConfiguration);
 
         expect(createElementSpy).toHaveBeenCalledWith("input");
         expect(backgroundColourPicker).toBe(mockInput);
@@ -76,7 +76,7 @@ describe("componentCreator → createBackgroundColourPickerInput", () => {
         const mockInput = {element: "input", addEventListener: mockEventListener};
         createElementSpy.mockReturnValueOnce(mockInput);
 
-        const backgroundColourPicker = createBackgroundColourPickerInput(1, undefined);
+        const backgroundColourPicker = componentCreatorModule.createBackgroundColourPickerInput(1, undefined);
 
         expect(backgroundColourPicker.value).not.toBeDefined();
     });
@@ -86,7 +86,7 @@ describe("componentCreator → createBackgroundColourPickerInput", () => {
         const mockInput = {element: "input", addEventListener: mockEventListener};
         createElementSpy.mockReturnValueOnce(mockInput);
 
-        const backgroundColourPicker = createBackgroundColourPickerInput(1, { backgroundColour: "red", textColour: "blue"});
+        const backgroundColourPicker = componentCreatorModule.createBackgroundColourPickerInput(1, { backgroundColour: "red", textColour: "blue"});
 
         expect(backgroundColourPicker.value).toBe("red");
     });
@@ -106,7 +106,7 @@ describe("componentCreator → createTextColourPickerInput", () => {
         const mockInput = {element: "deleteButton", addEventListener: mockEventListener};
         createElementSpy.mockReturnValueOnce(mockInput);
 
-        const textColourPicker = createTextColourPickerInput(1, mockConfiguration);
+        const textColourPicker = componentCreatorModule.createTextColourPickerInput(1, mockConfiguration);
 
         expect(createElementSpy).toHaveBeenCalledWith("input");
         expect(textColourPicker).toBe(mockInput);
@@ -120,7 +120,7 @@ describe("componentCreator → createTextColourPickerInput", () => {
         const mockInput = {element: "deleteButton", addEventListener: mockEventListener};
         createElementSpy.mockReturnValueOnce(mockInput);
 
-        const textColourPicker = createTextColourPickerInput(1, undefined);
+        const textColourPicker = componentCreatorModule.createTextColourPickerInput(1, undefined);
 
         expect(textColourPicker.value).not.toBeDefined();
     });
@@ -130,7 +130,7 @@ describe("componentCreator → createTextColourPickerInput", () => {
         const mockInput = {element: "deleteButton", addEventListener: mockEventListener};
         createElementSpy.mockReturnValueOnce(mockInput);
 
-        const textColourPicker = createTextColourPickerInput(1, { backgroundColour: "red", textColour: "blue"});
+        const textColourPicker = componentCreatorModule.createTextColourPickerInput(1, { backgroundColour: "red", textColour: "blue"});
 
         expect(textColourPicker.value).toBe("blue");
     });
@@ -146,7 +146,7 @@ describe("componentCreator → createDeleteButton", () => {
         const mockDeleteButton = {element: "deleteButton", addEventListener: mockEventListener};
         createElementSpy.mockReturnValueOnce(mockDeleteButton);
 
-        const deleteButton = createDeleteButton(1);
+        const deleteButton = componentCreatorModule.createDeleteButton(1);
 
         expect(createElementSpy).toHaveBeenCalledWith("button");
         expect(deleteButton).toBe(mockDeleteButton);
@@ -164,7 +164,7 @@ describe("componentCreator → createPreviewLabel", () => {
         createElementSpy.mockReturnValueOnce({ element: "span", style: {}});     
         const mockConfiguration = { backgroundColour: "red", textColour: "blue"};   
 
-        const previewLabel = createPreviewLabel(1, mockConfiguration, "key");
+        const previewLabel = componentCreatorModule.createPreviewLabel(1, mockConfiguration, "key");
 
         expect(createElementSpy).toHaveBeenCalledWith("span");
         expect(previewLabel).toBeDefined();
@@ -174,11 +174,11 @@ describe("componentCreator → createPreviewLabel", () => {
         expect(previewLabel.innerText).toBe("key");        
     });
 
-    it("should not set preview area when configuration is not supplied", () => {
+    it("should not set preview label when configuration is not supplied", () => {
         createElementSpy.mockReturnValueOnce({ element: "span", style: {}});     
         const mockConfiguration = undefined;
 
-        const previewLabel = createPreviewLabel(1, mockConfiguration, "key");
+        const previewLabel = componentCreatorModule.createPreviewLabel(1, mockConfiguration, "key");
 
         expect(createElementSpy).toHaveBeenCalledWith("span");
         expect(previewLabel).toBeDefined();
@@ -187,11 +187,11 @@ describe("componentCreator → createPreviewLabel", () => {
         expect(previewLabel.innerText).not.toBeDefined();
     });
 
-    it("should not set preview area when key is not supplied", () => {
+    it("should not set preview label when key is not supplied", () => {
         createElementSpy.mockReturnValueOnce({ element: "span", style: {}});     
         const mockConfiguration = { backgroundColour: "red", textColour: "blue"};   
 
-        const previewLabel = createPreviewLabel(1, mockConfiguration, undefined);
+        const previewLabel = componentCreatorModule.createPreviewLabel(1, mockConfiguration, undefined);
 
         expect(createElementSpy).toHaveBeenCalledWith("span");
         expect(previewLabel).toBeDefined();
@@ -200,10 +200,10 @@ describe("componentCreator → createPreviewLabel", () => {
         expect(previewLabel.innerText).not.toBeDefined();
     });
 
-    it("should not set preview area when key is not supplied", () => {
+    it("should not set preview label when key and configuration is not supplied", () => {
         createElementSpy.mockReturnValueOnce({ element: "span", style: {}});     
 
-        const previewLabel = createPreviewLabel(1, undefined, undefined);
+        const previewLabel = componentCreatorModule.createPreviewLabel(1, undefined, undefined);
 
         expect(createElementSpy).toHaveBeenCalledWith("span");
         expect(previewLabel).toBeDefined();
@@ -225,7 +225,7 @@ describe("componentCreator → createLineBreak", () => {
     ])("should create a line break br %o", (mockBrValue) => {
         createElementSpy.mockReturnValueOnce(mockBrValue);        
 
-        const lineBreak = createLineBreak();
+        const lineBreak = componentCreatorModule.createLineBreak();
 
         expect(lineBreak).toBe(mockBrValue);
         expect(createElementSpy).toHaveBeenCalledWith("br");
@@ -244,7 +244,7 @@ describe("componentCreator → createDiv", () => {
     ])("should create a div %o", (mockDivValue) => {
         createElementSpy.mockReturnValueOnce(mockDivValue);        
 
-        const div = createDiv();
+        const div = componentCreatorModule.createDiv();
 
         expect(div).toBe(mockDivValue);
         expect(createElementSpy).toHaveBeenCalledWith("div");

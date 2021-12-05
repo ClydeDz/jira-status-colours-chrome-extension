@@ -1,23 +1,23 @@
-import { createRow } from "../../options/componentCreator";
-import * as componentCreatorSpy from "../../options/componentCreator";
-import * as documentModuleSpy from "../../common/document";
+import * as componentCreatorModule from "../../options/componentCreator";
+import * as componentCreatorSelfModule from "../../options/componentCreator";
+import * as documentModule from "../../common/document";
 
-const createJiraStatusInputSpy = jest.spyOn(componentCreatorSpy, "createJiraStatusInput")
+const createJiraStatusInputSpy = jest.spyOn(componentCreatorSelfModule, "createJiraStatusInput")
     .mockImplementation(jest.fn());
-const createBackgroundColourPickerInputSpy = jest.spyOn(componentCreatorSpy, "createBackgroundColourPickerInput")
+const createBackgroundColourPickerInputSpy = jest.spyOn(componentCreatorSelfModule, "createBackgroundColourPickerInput")
     .mockImplementation(jest.fn());
-const createTextColourPickerInputSpy = jest.spyOn(componentCreatorSpy, "createTextColourPickerInput")
+const createTextColourPickerInputSpy = jest.spyOn(componentCreatorSelfModule, "createTextColourPickerInput")
     .mockImplementation(jest.fn());
-const createDeleteButtonSpy = jest.spyOn(componentCreatorSpy, "createDeleteButton")
+const createDeleteButtonSpy = jest.spyOn(componentCreatorSelfModule, "createDeleteButton")
     .mockImplementation(jest.fn());
-const createPreviewLabelSpy = jest.spyOn(componentCreatorSpy, "createPreviewLabel")
+const createPreviewLabelSpy = jest.spyOn(componentCreatorSelfModule, "createPreviewLabel")
     .mockImplementation(jest.fn());
-const createLineBreakSpy = jest.spyOn(componentCreatorSpy, "createLineBreak")
+const createLineBreakSpy = jest.spyOn(componentCreatorSelfModule, "createLineBreak")
     .mockImplementation(jest.fn());
-const createDivSpy = jest.spyOn(componentCreatorSpy, "createDiv")
+const createDivSpy = jest.spyOn(componentCreatorSelfModule, "createDiv")
     .mockImplementation(jest.fn());
 
-const appendChildSpy = jest.spyOn(documentModuleSpy, "appendChild")
+const appendChildSpy = jest.spyOn(documentModule, "appendChild")
     .mockImplementation(jest.fn());
 
 describe("componentCreator → createRow", () => {
@@ -36,7 +36,7 @@ describe("componentCreator → createRow", () => {
         appendChildSpy.mockImplementation(jest.fn());        
         const parentDiv = {};        
 
-        createRow(1, parentDiv, {}, "key");
+        componentCreatorModule.createRow(1, parentDiv, {}, "key");
 
         expect(appendChildSpy).toHaveBeenCalledTimes(7);
         expect(appendChildSpy).toHaveBeenNthCalledWith(7, parentDiv, {});

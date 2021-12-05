@@ -1,10 +1,10 @@
-import { applyStyle } from "../../background/style";
-import { presetConfiguration } from "../../common/settings";
-import * as document from "../../common/document";
+import * as styleModule from "../../background/style";
+import * as settingsModule from "../../common/settings";
+import * as documentModule from "../../common/document";
 
-const getJiraStatusLabelsSpy = jest.spyOn(document, "getJiraStatusLabels")
+const getJiraStatusLabelsSpy = jest.spyOn(documentModule, "getJiraStatusLabels")
     .mockImplementation(jest.fn());
-const updateJiraStatusStyleSpy = jest.spyOn(document, "updateJiraStatusStyle")
+const updateJiraStatusStyleSpy = jest.spyOn(documentModule, "updateJiraStatusStyle")
     .mockImplementation(jest.fn());
     
 describe("style → applyStyle", () => {
@@ -14,19 +14,19 @@ describe("style → applyStyle", () => {
 
     it.each([
         [null], 
-        [presetConfiguration]
-    ])("should not apply style if no labels found", (savedConfiguration) => {
+        [settingsModule.presetConfiguration]
+    ])("should not apply style if no jira status labels found", (savedConfiguration) => {
         getJiraStatusLabelsSpy.mockReturnValue([]);
 
-        applyStyle(savedConfiguration);
+        styleModule.applyStyle(savedConfiguration);
 
         expect(updateJiraStatusStyleSpy).not.toHaveBeenCalled();
     });
 
     it.each([
         [null], 
-        [presetConfiguration]
-    ])("should apply style for one label after matching %s", (savedConfiguration) => {
+        [settingsModule.presetConfiguration]
+    ])("should apply style for one jira status label after matching %s", (savedConfiguration) => {
         const mockJiraStatusLabels = [
             {
                 innerText: "In Progress",
@@ -35,18 +35,18 @@ describe("style → applyStyle", () => {
                 innerText: "Other",
             }
         ];
-        const inProgress = presetConfiguration["IN PROGRESS"];
+        const inProgress = settingsModule.presetConfiguration["IN PROGRESS"];
         getJiraStatusLabelsSpy.mockReturnValue(mockJiraStatusLabels);
 
-        applyStyle(savedConfiguration);
+        styleModule.applyStyle(savedConfiguration);
 
         expect(updateJiraStatusStyleSpy).toHaveBeenCalledWith(mockJiraStatusLabels[0], inProgress);
     });
 
     it.each([
         [null], 
-        [presetConfiguration]
-    ])("should apply style to two labels after matching", (savedConfiguration) => {
+        [settingsModule.presetConfiguration]
+    ])("should apply style to two jira status labels after matching", (savedConfiguration) => {
         const mockJiraStatusLabels = [
             {
                 innerText: "In Progress",
@@ -55,11 +55,11 @@ describe("style → applyStyle", () => {
                 innerText: "Backlog",
             }
         ];
-        const inProgress = presetConfiguration["IN PROGRESS"];
-        const backlog = presetConfiguration["BACKLOG"];
+        const inProgress = settingsModule.presetConfiguration["IN PROGRESS"];
+        const backlog = settingsModule.presetConfiguration["BACKLOG"];
         getJiraStatusLabelsSpy.mockReturnValue(mockJiraStatusLabels);
 
-        applyStyle(savedConfiguration);
+        styleModule.applyStyle(savedConfiguration);
 
         expect(updateJiraStatusStyleSpy).toHaveBeenCalledWith(mockJiraStatusLabels[0], inProgress);
         expect(updateJiraStatusStyleSpy).toHaveBeenCalledWith(mockJiraStatusLabels[1], backlog);
@@ -67,8 +67,8 @@ describe("style → applyStyle", () => {
 
     it.each([
         [null], 
-        [presetConfiguration]
-    ])("should not apply style to labels after no match found", (savedConfiguration) => {
+        [settingsModule.presetConfiguration]
+    ])("should not apply style to jira status labels after no match found", (savedConfiguration) => {
         const mockJiraStatusLabels = [
             {
                 innerText: "Test",
@@ -79,7 +79,7 @@ describe("style → applyStyle", () => {
         ];
         getJiraStatusLabelsSpy.mockReturnValue(mockJiraStatusLabels);
 
-        applyStyle(savedConfiguration);
+        styleModule.applyStyle(savedConfiguration);
 
         expect(updateJiraStatusStyleSpy).not.toHaveBeenCalled();
     });
@@ -87,7 +87,7 @@ describe("style → applyStyle", () => {
     it("should not update style when no config was supplied or preset config not found", () => {
         getJiraStatusLabelsSpy.mockReturnValue([]);
 
-        applyStyle([]); 
+        styleModule.applyStyle([]); 
 
         expect(updateJiraStatusStyleSpy).not.toHaveBeenCalled();
     });

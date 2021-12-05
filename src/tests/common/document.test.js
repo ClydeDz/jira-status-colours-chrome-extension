@@ -1,37 +1,33 @@
 import * as documentModule from "../../common/document";
-import {
-    document,
-    getElementById,
-    querySelectorAll,
-    createElement,
-    appendChild
-} from "../mocks/documentMock";
+import * as documentMockModule from "../mocks/documentMock";
 
 describe("document → getJiraStatusLabels", () => {
     beforeEach(() => {
-        documentModule.initializeDocument(document);
+        documentModule.initializeDocument(documentMockModule.document);
         jest.resetAllMocks();
     }); 
 
-    test("getJiraStatusLabels method called", () => {
+    test("queries the document with correct selectors", () => {
         documentModule.getJiraStatusLabels();
-        expect(querySelectorAll).toHaveBeenCalledWith(".ghx-heading .ghx-info > span");
+        expect(documentMockModule.querySelectorAll).toHaveBeenCalledWith(".ghx-heading .ghx-info > span");
     });
 });
 
 describe("document → updateJiraStatusStyle", () => {
     beforeEach(() => {
-        documentModule.initializeDocument(document);
+        documentModule.initializeDocument(documentMockModule.document);
         jest.resetAllMocks();
     }); 
 
-    test("updateJiraStatusStyle method called", () => {
+    test("sets the style properties on supplied element", () => {
         var abc = { style: {} };
         var configuration = {
             backgroundColour: "red",
             textColour: "blue",
         };
+        
         var element = documentModule.updateJiraStatusStyle(abc, configuration);
+        
         expect(element.style.backgroundColor).toBe("red");
         expect(element.style.color).toBe("blue");
     });
@@ -39,41 +35,43 @@ describe("document → updateJiraStatusStyle", () => {
 
 describe("document → getElementById", () => {
     beforeEach(() => {
-        documentModule.initializeDocument(document);
+        documentModule.initializeDocument(documentMockModule.document);
         jest.resetAllMocks();
     }); 
 
-    test("getElementById method called", () => {
+    test("calls getElementById method called with supplied element selector", () => {
         documentModule.getElementById("#test");
-        expect(getElementById).toHaveBeenCalledWith("#test");
+        expect(documentMockModule.getElementById).toHaveBeenCalledWith("#test");
     });
 });
 
 describe("document → createElement", () => {
     beforeEach(() => {
-        documentModule.initializeDocument(document);
+        documentModule.initializeDocument(documentMockModule.document);
         jest.resetAllMocks();
     }); 
 
-    test("createElement method called", () => {
+    test("calls createElement method with supplied html tag name", () => {
         documentModule.createElement("div");
-        expect(createElement).toHaveBeenCalledWith("div");
+        expect(documentMockModule.createElement).toHaveBeenCalledWith("div");
     });
 });
 
 describe("document → appendChild", () => {
     beforeEach(() => {
-        documentModule.initializeDocument(document);
+        documentModule.initializeDocument(documentMockModule.document);
         jest.resetAllMocks();
     }); 
 
-    test("appendChild method called", () => {
+    test("calls appendChild method with supplied child element", () => {
         var abc = {
-            appendChild
+            appendChild: documentMockModule.appendChild
         };
         var xyz;
+        
         documentModule.appendChild(abc, xyz);
-        expect(appendChild).toHaveBeenCalledWith(xyz);
+
+        expect(documentMockModule.appendChild).toHaveBeenCalledWith(xyz);
     });
 });
 

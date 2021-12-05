@@ -1,35 +1,35 @@
-import { addConfigurationRow, startup, initializeEventListenersForOptions, saveConfiguration } from "../../options/events";
-import * as documentModuleSpy from "../../common/document";
-import * as settingsModuleSpy from "../../common/settings";
-import * as componentCreatorModuleSpy from "../../options/componentCreator";
-import * as storageModuleSpy from "../../common/storage";
+import * as eventsModule from "../../options/events";
+import * as documentModule from "../../common/document";
+import * as settingsModule from "../../common/settings";
+import * as componentCreatorModule from "../../options/componentCreator";
+import * as storageModule from "../../common/storage";
 
-const getElementByIdSpy = jest.spyOn(documentModuleSpy, "getElementById")
+const getElementByIdSpy = jest.spyOn(documentModule, "getElementById")
     .mockImplementation(jest.fn());
 
-const createRowSpy = jest.spyOn(componentCreatorModuleSpy, "createRow")
+const createRowSpy = jest.spyOn(componentCreatorModule, "createRow")
     .mockImplementation(jest.fn());
 
-const incrementRowCountSpy = jest.spyOn(settingsModuleSpy, "incrementRowCount")
+const incrementRowCountSpy = jest.spyOn(settingsModule, "incrementRowCount")
     .mockImplementation(jest.fn());
 
-const setStorageSpy = jest.spyOn(storageModuleSpy, "setStorage")
+const setStorageSpy = jest.spyOn(storageModule, "setStorage")
     .mockImplementation(jest.fn());
 
 describe("events → addConfigurationRow", () => {
     beforeEach(() => {
-        settingsModuleSpy.rowCount = 0;
+        settingsModule.rowCount = 0;
         jest.resetAllMocks();
     });
 
     it("should call create row with relevant parameters", () => {
         incrementRowCountSpy.mockImplementation(() => {
-            settingsModuleSpy.rowCount++;
+            settingsModule.rowCount++;
         });
         const mockParentDiv = { element: "parent"};
         getElementByIdSpy.mockReturnValueOnce(mockParentDiv);
         
-        addConfigurationRow();
+        eventsModule.addConfigurationRow();
         
         expect(incrementRowCountSpy).toHaveBeenCalledTimes(1);
         expect(getElementByIdSpy).toHaveBeenCalledWith("Configuration");
@@ -39,14 +39,14 @@ describe("events → addConfigurationRow", () => {
 
 describe("events → startup", () => {
     const mockConfiguration = {
-        ...settingsModuleSpy.presetConfiguration,
+        ...settingsModule.presetConfiguration,
         "OTHER": {
             backgroundColour: "other",
             textColour: "other"
         }
     }
     beforeEach(() => {
-        settingsModuleSpy.rowCount = 0;
+        settingsModule.rowCount = 0;
         jest.resetAllMocks();
     });
 
@@ -57,7 +57,7 @@ describe("events → startup", () => {
         const mockParentDiv = { element: "parent"};
         getElementByIdSpy.mockReturnValueOnce(mockParentDiv);
         
-        startup(savedConfiguration);
+        eventsModule.startup(savedConfiguration);
         
         expect(getElementByIdSpy).toHaveBeenCalledWith("Configuration");
         expect(incrementRowCountSpy).toHaveBeenCalledTimes(rowCounter);
@@ -67,7 +67,7 @@ describe("events → startup", () => {
     it("should not execute loop when no configuration or parent element found", () => {
         getElementByIdSpy.mockReturnValueOnce([]);
         
-        startup([]);
+        eventsModule.startup([]);
         
         expect(getElementByIdSpy).toHaveBeenCalledWith("Configuration");
         expect(incrementRowCountSpy).toHaveBeenCalledTimes(0);
@@ -76,7 +76,7 @@ describe("events → startup", () => {
 
     it("should call create row with relevant parameters", () => {
         incrementRowCountSpy.mockImplementation(() => {
-            settingsModuleSpy.rowCount++;
+            settingsModule.rowCount++;
         });
         const mockParentDiv = { element: "parent"};
         getElementByIdSpy.mockReturnValueOnce(mockParentDiv);
@@ -87,7 +87,7 @@ describe("events → startup", () => {
             }
         }
 
-        startup(mockConfiguration);
+        eventsModule.startup(mockConfiguration);
         
         expect(getElementByIdSpy).toHaveBeenCalledWith("Configuration");
         expect(incrementRowCountSpy).toHaveBeenCalledTimes(1);
@@ -98,40 +98,40 @@ describe("events → startup", () => {
 
 describe("events → initializeEventListenersForOptions", () => {
     beforeEach(() => {
-        settingsModuleSpy.rowCount = 0;
+        settingsModule.rowCount = 0;
         jest.resetAllMocks();
     });
 
-    it("should call create row with relevant parameters", () => {
+    it("initializes the correct listeners with the correct methods", () => {
         const mockEventListener = jest.fn();
         const mockParentDiv = { addEventListener: mockEventListener};
         getElementByIdSpy.mockReturnValue(mockParentDiv);
         
-        initializeEventListenersForOptions();
+        eventsModule.initializeEventListenersForOptions();
         
         expect(getElementByIdSpy).toHaveBeenCalledWith("SaveConfiguration");
         expect(getElementByIdSpy).toHaveBeenCalledWith("AddConfigurationRow");
-        expect(mockEventListener).toHaveBeenCalledWith("click", expect.any(Function));
-        expect(mockEventListener).toHaveBeenCalledWith("click", addConfigurationRow);
+        expect(mockEventListener).toHaveBeenCalledWith("click", eventsModule.saveConfiguration);
+        expect(mockEventListener).toHaveBeenCalledWith("click", eventsModule.addConfigurationRow);
     });
 });
 
-describe("events → initializeEventListenersForOptions", () => {
+describe("events → saveConfiguration", () => {
     beforeEach(() => {
-        settingsModuleSpy.rowCount = 0;
+        settingsModule.rowCount = 0;
         jest.resetAllMocks();
     });
 
-    it("should call create row with relevant parameters", () => {
-        settingsModuleSpy.rowCount = 0;
+    it("saves empty configuration when no rows found", () => {
+        settingsModule.rowCount = 0;
         
-        saveConfiguration();
+        eventsModule.saveConfiguration();
         
-        expect(setStorageSpy).toHaveBeenCalledWith(settingsModuleSpy.chromeSyncStorageKey, {});        
+        expect(setStorageSpy).toHaveBeenCalledWith(settingsModule.chromeSyncStorageKey, {});        
     });
 
-    it("should call create row with relevant parameters", () => {
-        settingsModuleSpy.rowCount = 1;
+    it("saves configuration when row found", () => {
+        settingsModule.rowCount = 1;
         const mockPreviewLabel = { 
             style: {
                 backgroundColor: "red", 
@@ -143,16 +143,16 @@ describe("events → initializeEventListenersForOptions", () => {
         getElementByIdSpy.mockReturnValueOnce({ value: "backgroundColor"});
         getElementByIdSpy.mockReturnValueOnce({ value: "textColor"});
         
-        saveConfiguration();
+        eventsModule.saveConfiguration();
         
-        expect(setStorageSpy).toHaveBeenCalledWith(settingsModuleSpy.chromeSyncStorageKey, { "TEST" : {
+        expect(setStorageSpy).toHaveBeenCalledWith(settingsModule.chromeSyncStorageKey, { "TEST" : {
             backgroundColour: "backgroundColor",
             textColour: "textColor"
         }});        
     });
 
-    it("should call create row with relevant parameters 2", () => {
-        settingsModuleSpy.rowCount = 2;
+    it("saves configuration when multiple rows found", () => {
+        settingsModule.rowCount = 2;
         const mockPreviewLabel = [{ 
             style: {
                 backgroundColor: "red", 
@@ -183,9 +183,9 @@ describe("events → initializeEventListenersForOptions", () => {
             }, 
         };
         
-        saveConfiguration();
+        eventsModule.saveConfiguration();
         
-        expect(setStorageSpy).toHaveBeenCalledWith(settingsModuleSpy.chromeSyncStorageKey, expectedOutput);        
+        expect(setStorageSpy).toHaveBeenCalledWith(settingsModule.chromeSyncStorageKey, expectedOutput);        
     });
 
     it.each([
@@ -193,19 +193,19 @@ describe("events → initializeEventListenersForOptions", () => {
         [undefined, undefined, { value: "textColor"}],
         [{}, undefined, { value: "textColor"}],
         [undefined, undefined, undefined]
-    ])("s23re3rhould call create row with relevant parameters %o, %o, %o", (previewLabelElement, backgroundColourPickerElement, textColourPickerElement) => {
-        settingsModuleSpy.rowCount = 1;
+    ])("saves empty configuration when one or more elements are undefined %o, %o, %o", (previewLabelElement, backgroundColourPickerElement, textColourPickerElement) => {
+        settingsModule.rowCount = 1;
         getElementByIdSpy.mockReturnValueOnce(previewLabelElement);
         getElementByIdSpy.mockReturnValueOnce(backgroundColourPickerElement);
         getElementByIdSpy.mockReturnValueOnce(textColourPickerElement);
         
-        saveConfiguration();
+        eventsModule.saveConfiguration();
         
-        expect(setStorageSpy).toHaveBeenCalledWith(settingsModuleSpy.chromeSyncStorageKey, {});        
+        expect(setStorageSpy).toHaveBeenCalledWith(settingsModule.chromeSyncStorageKey, {});        
     });
 
-    it("sssssssshould call create row with relevant parameters", () => {
-        settingsModuleSpy.rowCount = 1;
+    it("saves empty configuration when preview panel doesn't have required properties", () => {
+        settingsModule.rowCount = 1;
         const mockPreviewLabel = { 
             style: {
                 backgroundColor: "red",
@@ -216,8 +216,8 @@ describe("events → initializeEventListenersForOptions", () => {
         getElementByIdSpy.mockReturnValueOnce({ value: "backgroundColor"});
         getElementByIdSpy.mockReturnValueOnce({ value: "textColor"});
         
-        saveConfiguration();
+        eventsModule.saveConfiguration();
         
-        expect(setStorageSpy).toHaveBeenCalledWith(settingsModuleSpy.chromeSyncStorageKey, {});        
+        expect(setStorageSpy).toHaveBeenCalledWith(settingsModule.chromeSyncStorageKey, {});        
     });
 });
