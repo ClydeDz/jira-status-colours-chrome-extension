@@ -89,26 +89,26 @@ export function createRow(id, parentElement, defaultSettingValue, defaultSetting
     const deleteButton = self.createDeleteButton(id);
     const previewLabel = self.createPreviewLabel(id, defaultSettingValue, defaultSettingKey);   
     
-    const tableRow = createTableRow();
+    const tableRow = self.createTableRow();
     appendChild(parentElement, tableRow);
 
-    const tableColumnOne = createTableCell();
+    const tableColumnOne = self.createTableCell();
     appendChild(tableColumnOne, deleteButton);
     appendChild(tableRow, tableColumnOne);
 
-    const tableColumnTwo = createTableCell();
+    const tableColumnTwo = self.createTableCell();
     appendChild(tableColumnTwo, jiraStatusInput);
     appendChild(tableRow, tableColumnTwo);
 
-    const tableColumnThree = createTableCell();
+    const tableColumnThree = self.createTableCell();
     appendChild(tableColumnThree, backgroundColourPickerInput);
     appendChild(tableRow, tableColumnThree);
 
-    const tableColumnFour = createTableCell();
+    const tableColumnFour = self.createTableCell();
     appendChild(tableColumnFour, textColourPickerInput);
     appendChild(tableRow, tableColumnFour);
 
-    const tableColumnFive = createTableCell();
+    const tableColumnFive = self.createTableCell();
     appendChild(tableColumnFive, previewLabel);
     appendChild(tableRow, tableColumnFive);    
 }

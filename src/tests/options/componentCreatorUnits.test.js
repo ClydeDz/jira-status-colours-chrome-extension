@@ -233,7 +233,7 @@ describe("componentCreator → createTableCell", () => {
     });
 });
 
-describe("componentCreator → createDiv", () => {
+describe("componentCreator → createTableRow", () => {
     beforeEach(() => {
         jest.resetAllMocks();
     });
