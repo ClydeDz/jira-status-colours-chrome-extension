@@ -6,17 +6,29 @@ export const incrementRowCount = () => {
 }
 
 export const PRESET_CONFIGURATION = {
-    "IN PROGRESS": {
-        backgroundColour: "#F0B719",
-        textColour: "#000000"
-    },
     "BACKLOG": {
-        backgroundColour: "#ff4747",
-        textColour: "#000000"
+        backgroundColour: "#e3e3e3",
+        textColour: "#00058a"
+    },
+    "IN PROGRESS": {
+        backgroundColour: "#ffc21a",
+        textColour: "#611d00"
+    },
+    "IN REVIEW": {
+        backgroundColour: "#8f00d1",
+        textColour: "#f5e0ff"
     },
     "DONE": {
-        backgroundColour: "#168500",
+        backgroundColour: "#1a9e00",
         textColour: "#FFFFFF"
+    },
+    "RESOLVED": {
+        backgroundColour: "#3b3b3b",
+        textColour: "#99ff85"
+    },
+    "CANCELLED": {
+        backgroundColour: "#000000",
+        textColour: "#dedede"
     }
 };
 

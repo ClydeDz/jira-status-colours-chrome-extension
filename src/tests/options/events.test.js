@@ -51,8 +51,8 @@ describe("events → startup", () => {
     });
 
     it.each([
-        [null, 3], 
-        [mockConfiguration, 4]
+        [null, 6], 
+        [mockConfiguration, 7]
     ])("should execute loop when relevant configuration found", (savedConfiguration, rowCounter) => {
         const mockParentDiv = { element: "parent"};
         getElementByIdSpy.mockReturnValueOnce(mockParentDiv);

@@ -19,10 +19,10 @@ describe("settings", () => {
     expect(settingsModule.ROW_COUNT).toBe(1);
   });
 
-  test("has preset configuration", () => {      
-    expect(settingsModule.PRESET_CONFIGURATION["IN PROGRESS"]).toBeDefined();
-    expect(settingsModule.PRESET_CONFIGURATION["DONE"]).toBeDefined();
-    expect(settingsModule.PRESET_CONFIGURATION["BACKLOG"]).toBeDefined();
+  test("has six preset configuration keys", () => {      
+    const presetConfig = settingsModule.PRESET_CONFIGURATION;
+    const keys = Object.keys(presetConfig);
+    expect(keys.length).toBe(6);
   });
 
   test("placeholder configuration is defined", () => {      
