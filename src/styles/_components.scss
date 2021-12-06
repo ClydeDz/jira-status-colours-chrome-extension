@@ -81,9 +81,6 @@ button {
 }
 
 .icon-delete {
-    position: relative;
-    top: 2px;
-
     &::after {
         display: inline-block;
         content: "\00d7";
