@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
     "name": "Jira Status Colours",
-    "description": "Customize the colours of your Jira status labels.",
-    "version": "0.0.1",
+    "description": "Customize the colours of your Jira statuses.",
+    "version": "0.0.2",
     "author": "Clyde D'Souza",
     "icons": {
       "16": "icons/icon16.png",

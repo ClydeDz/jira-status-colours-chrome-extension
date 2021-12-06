@@ -1,12 +1,12 @@
 # Jira Status Colours Chrome Extension
-Customize the colours of your Jira status labels.
+Customize the colours of your Jira statuses.
 
 ## Why?
-When I come across a book that I like on Amazon, I immediately want to head over to its Goodreads page and save it to my 'Want to read' list. However, this process is tedious as I have to manually open up Goodreads and search for the book before I can actually click that button.
+Do you also find it hard to spot the statuses of your Jira tickets? Do you wish they were coloured so at a glance you could see how many stories are in progress, how many are in review and how many are done? Don't look any further because this Chrome Extension allows you to customize the colours of Jira statuses. 
 
-This Chrome extension removes the need for multiple steps. Just click on the 'View in Goodreads' button to directly open up that book's Goodreads page. Easy as! 
+Out of the box, it comes with a set of preset statuses and colours, but you can update this list as per your convenience. To head over to the configuration page, just click on the extension's icon in your browser and select options. Once you've configured the statuses and their colours to your hearts content, you can then head over to your Jira board and you should be able to see those colours. 
 
-Happy reading!
+Have a productive time ahead!
 
 ## Credits
 Developed by [Clyde D'Souza](https://clydedsouza.net/)
