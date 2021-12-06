@@ -10,13 +10,13 @@ describe("settings", () => {
   });
 
   test("can fetch row count value", () => {      
-    expect(settingsModule.rowCount).toBe(0);
+    expect(settingsModule.ROW_COUNT).toBe(0);
   });
 
   test("can increment row count", () => {      
-    settingsModule.rowCount = 0;
+    settingsModule.ROW_COUNT = 0;
     settingsModule.incrementRowCount()
-    expect(settingsModule.rowCount).toBe(1);
+    expect(settingsModule.ROW_COUNT).toBe(1);
   });
 
   test("has preset configuration", () => {      

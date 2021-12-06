@@ -18,13 +18,13 @@ const setStorageSpy = jest.spyOn(storageModule, "setStorage")
 
 describe("events → addConfigurationRow", () => {
     beforeEach(() => {
-        settingsModule.rowCount = 0;
+        settingsModule.ROW_COUNT = 0;
         jest.resetAllMocks();
     });
 
     it("should call create row with relevant parameters", () => {
         incrementRowCountSpy.mockImplementation(() => {
-            settingsModule.rowCount++;
+            settingsModule.ROW_COUNT++;
         });
         const mockParentDiv = { element: "parent"};
         getElementByIdSpy.mockReturnValueOnce(mockParentDiv);
@@ -46,7 +46,7 @@ describe("events → startup", () => {
         }
     }
     beforeEach(() => {
-        settingsModule.rowCount = 0;
+        settingsModule.ROW_COUNT = 0;
         jest.resetAllMocks();
     });
 
@@ -76,7 +76,7 @@ describe("events → startup", () => {
 
     it("should call create row with relevant parameters", () => {
         incrementRowCountSpy.mockImplementation(() => {
-            settingsModule.rowCount++;
+            settingsModule.ROW_COUNT++;
         });
         const mockParentDiv = { element: "parent"};
         getElementByIdSpy.mockReturnValueOnce(mockParentDiv);
@@ -98,7 +98,7 @@ describe("events → startup", () => {
 
 describe("events → initializeEventListenersForOptions", () => {
     beforeEach(() => {
-        settingsModule.rowCount = 0;
+        settingsModule.ROW_COUNT = 0;
         jest.resetAllMocks();
     });
 
@@ -118,12 +118,12 @@ describe("events → initializeEventListenersForOptions", () => {
 
 describe("events → saveConfiguration", () => {
     beforeEach(() => {
-        settingsModule.rowCount = 0;
+        settingsModule.ROW_COUNT = 0;
         jest.resetAllMocks();
     });
 
     it("saves empty configuration when no rows found", () => {
-        settingsModule.rowCount = 0;
+        settingsModule.ROW_COUNT = 0;
         
         eventsModule.saveConfiguration();
         
@@ -131,7 +131,7 @@ describe("events → saveConfiguration", () => {
     });
 
     it("saves configuration when row found", () => {
-        settingsModule.rowCount = 1;
+        settingsModule.ROW_COUNT = 1;
         const mockPreviewLabel = { 
             style: {
                 backgroundColor: "red", 
@@ -152,7 +152,7 @@ describe("events → saveConfiguration", () => {
     });
 
     it("saves configuration when multiple rows found", () => {
-        settingsModule.rowCount = 2;
+        settingsModule.ROW_COUNT = 2;
         const mockPreviewLabel = [{ 
             style: {
                 backgroundColor: "red", 
@@ -194,7 +194,7 @@ describe("events → saveConfiguration", () => {
         [{}, undefined, { value: "textColor"}],
         [undefined, undefined, undefined]
     ])("saves empty configuration when one or more elements are undefined %o, %o, %o", (previewLabelElement, backgroundColourPickerElement, textColourPickerElement) => {
-        settingsModule.rowCount = 1;
+        settingsModule.ROW_COUNT = 1;
         getElementByIdSpy.mockReturnValueOnce(previewLabelElement);
         getElementByIdSpy.mockReturnValueOnce(backgroundColourPickerElement);
         getElementByIdSpy.mockReturnValueOnce(textColourPickerElement);
@@ -205,7 +205,7 @@ describe("events → saveConfiguration", () => {
     });
 
     it("saves empty configuration when preview panel doesn't have required properties", () => {
-        settingsModule.rowCount = 1;
+        settingsModule.ROW_COUNT = 1;
         const mockPreviewLabel = { 
             style: {
                 backgroundColor: "red",

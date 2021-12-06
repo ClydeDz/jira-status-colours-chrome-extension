@@ -1,19 +1,19 @@
 import { getElementById } from "../common/document";
 import { setStorage } from "../common/storage";
 import { createRow } from "./componentCreator";
-import { presetConfiguration, rowCount, CHROME_SYNC_STORAGE_KEY, incrementRowCount } from "../common/settings";
+import { presetConfiguration, ROW_COUNT, CHROME_SYNC_STORAGE_KEY, incrementRowCount } from "../common/settings";
 import * as self from "./events";
 
 export function addConfigurationRow() {
     incrementRowCount();
     const parentElement = getElementById("Configuration");
-    createRow(rowCount, parentElement, undefined);
+    createRow(ROW_COUNT, parentElement, undefined);
 }
 
 export function saveConfiguration() {
     const updatedConfiguration = {};
 
-    for(var i=0; i <= rowCount; i++) {
+    for(var i=0; i <= ROW_COUNT; i++) {
         const previewPane = getElementById(`SampleOutput-${i}`);
         const backgroundColourPicker = getElementById(`BackgroundColour-${i}`);
         const textColourPicker = getElementById(`TextColour-${i}`);
@@ -40,7 +40,7 @@ export function startup(result) {
 
     for (let key of Object.keys(savedConfiguration)) {
         incrementRowCount();
-        createRow(rowCount, parentElement, savedConfiguration[key], key);
+        createRow(ROW_COUNT, parentElement, savedConfiguration[key], key);
     }
 }
 

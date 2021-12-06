@@ -1,8 +1,8 @@
 export const CHROME_SYNC_STORAGE_KEY = "Jira-Status-Colours-Configuration";
-export let rowCount = 0;
+export let ROW_COUNT = 0;
 
 export const incrementRowCount = () => {
-    rowCount++;
+    ROW_COUNT++;
 }
 
 export const presetConfiguration = {
