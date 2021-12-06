@@ -1,5 +1,5 @@
 # Jira Status Colours Chrome Extension
-Adds a 1-click 'View in Goodreads' button on Amazon book pages to easily navigate from Amazon to Goodreads when clicked.
+Customize the colours of your Jira status labels.
 
 ## Why?
 When I come across a book that I like on Amazon, I immediately want to head over to its Goodreads page and save it to my 'Want to read' list. However, this process is tedious as I have to manually open up Goodreads and search for the book before I can actually click that button.

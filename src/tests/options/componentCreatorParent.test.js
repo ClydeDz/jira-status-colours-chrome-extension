@@ -12,9 +12,9 @@ const createDeleteButtonSpy = jest.spyOn(componentCreatorSelfModule, "createDele
     .mockImplementation(jest.fn());
 const createPreviewLabelSpy = jest.spyOn(componentCreatorSelfModule, "createPreviewLabel")
     .mockImplementation(jest.fn());
-const createLineBreakSpy = jest.spyOn(componentCreatorSelfModule, "createLineBreak")
+const createTableRowSpy = jest.spyOn(componentCreatorSelfModule, "createTableRow")
     .mockImplementation(jest.fn());
-const createDivSpy = jest.spyOn(componentCreatorSelfModule, "createDiv")
+const createTableCellSpy = jest.spyOn(componentCreatorSelfModule, "createTableCell")
     .mockImplementation(jest.fn());
 
 const appendChildSpy = jest.spyOn(documentModule, "appendChild")
@@ -31,14 +31,13 @@ describe("componentCreator → createRow", () => {
         createTextColourPickerInputSpy.mockReturnValueOnce({});
         createDeleteButtonSpy.mockReturnValueOnce({});
         createPreviewLabelSpy.mockReturnValueOnce({});
-        createLineBreakSpy.mockReturnValueOnce({});
-        createDivSpy.mockReturnValueOnce({});
+        createTableRowSpy.mockReturnValueOnce({});
+        createTableCellSpy.mockReturnValue({});
         appendChildSpy.mockImplementation(jest.fn());        
         const parentDiv = {};        
 
         componentCreatorModule.createRow(1, parentDiv, {}, "key");
 
-        expect(appendChildSpy).toHaveBeenCalledTimes(7);
-        expect(appendChildSpy).toHaveBeenNthCalledWith(7, parentDiv, {});
+        expect(appendChildSpy).toHaveBeenCalledTimes(11);
     });
 });

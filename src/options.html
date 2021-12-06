@@ -1,12 +1,44 @@
 <html>
     <head>
-        <title>Test</title>
+        <title>Jira Status Colours</title>
+        <link href="options.css" rel="stylesheet" />
     </head>
     <body>
-        <p>Hello world</p>
-        <div id="Configuration"></div>
-        <button id="AddConfigurationRow" type="button">Add</button>
-        <button id="SaveConfiguration" type="button">Save</button>
+        <header>&nbsp;</header>
+        <main>
+            <div class="product-banner">
+                <img src="icons/icon128.png" alt="logo" width="90" />
+                <div>
+                    <h1>Jira Status Colours</h1>
+                    <h3>Some description of this Chrome extension</h3>
+                </div>
+            </div>
+            <table id="Configuration">
+                <tr>
+                    <th></th>
+                    <th>Jira Status Label</th>
+                    <th>Background</th>
+                    <th>Text</th>
+                    <th>Preview</th>
+                </tr>
+            </table>
+            <div>
+                <button id="AddConfigurationRow" type="button" class="btn-secondary">Add</button>
+                <button id="SaveConfiguration" type="button" class="btn-primary">Save</button>
+            </div>            
+        </main>
+        <footer>
+            <a href="https://github.com/ClydeDz/jira-status-colours-chrome-extension/blob/main/docs/README.md" target="_blank" rel="noreferrer">
+                About</a><span class="link-separator"></span>
+            <a href="https://github.com/ClydeDz/jira-status-colours-chrome-extension/issues/new/choose" target="_blank" rel="noreferrer">
+                Have an idea?</a><span class="link-separator"></span>
+            <a href="https://github.com/ClydeDz/jira-status-colours-chrome-extension/issues/new/choose" target="_blank" rel="noreferrer">
+                Report an issue</a><span class="link-separator"></span>
+            <a href="https://github.com/sponsors/ClydeDz" target="_blank" rel="noreferrer">
+                Support</a><span class="link-separator"></span>
+            Developed by <a href="https://clydedsouza.net" target="_blank" rel="noreferrer">
+                Clyde D'Souza</a>
+        </footer>        
         <script src="options.js" type="text/javascript"></script>
     </body>
 </html>

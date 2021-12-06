@@ -1,4 +1,5 @@
 import * as componentCreatorModule from "../../options/componentCreator";
+import * as settingsModule from "../../common/settings";
 import * as documentModule from "../../common/document";
 
 const createElementSpy = jest.spyOn(documentModule, "createElement")
@@ -27,14 +28,14 @@ describe("componentCreator → createJiraStatusInput", () => {
         expect(mockEventListener).toHaveBeenCalledWith("change", expect.any(Function));
     });
 
-    it("should not set value", () => {
+    it("should set value to placeholder when no key is provided", () => {
         const mockEventListener = jest.fn();
         const mockInput = {element: "input", addEventListener: mockEventListener};
         createElementSpy.mockReturnValueOnce(mockInput);
 
         const jiraStatusInput = componentCreatorModule.createJiraStatusInput(1, undefined);
 
-        expect(jiraStatusInput.value).not.toBeDefined();
+        expect(jiraStatusInput.value).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.jiraStatusLabel);
     });
 
     it("should set value", () => {
@@ -71,14 +72,14 @@ describe("componentCreator → createBackgroundColourPickerInput", () => {
         expect(mockEventListener).toHaveBeenCalledWith("change", expect.any(Function));
     });
 
-    it("should not set value", () => {
+    it("should set value to placeholder when no configuration is provided", () => {
         const mockEventListener = jest.fn();
         const mockInput = {element: "input", addEventListener: mockEventListener};
         createElementSpy.mockReturnValueOnce(mockInput);
 
         const backgroundColourPicker = componentCreatorModule.createBackgroundColourPickerInput(1, undefined);
 
-        expect(backgroundColourPicker.value).not.toBeDefined();
+        expect(backgroundColourPicker.value).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.backgroundColour);
     });
 
     it("should set value", () => {
@@ -115,14 +116,14 @@ describe("componentCreator → createTextColourPickerInput", () => {
         expect(mockEventListener).toHaveBeenCalledWith("change", expect.any(Function));
     });
 
-    it("should not set value", () => {
+    it("should set value to placeholder when no configuration is provided", () => {
         const mockEventListener = jest.fn();
         const mockInput = {element: "deleteButton", addEventListener: mockEventListener};
         createElementSpy.mockReturnValueOnce(mockInput);
 
         const textColourPicker = componentCreatorModule.createTextColourPickerInput(1, undefined);
 
-        expect(textColourPicker.value).not.toBeDefined();
+        expect(textColourPicker.value).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.textColour);
     });
 
     it("should set value", () => {
@@ -148,9 +149,10 @@ describe("componentCreator → createDeleteButton", () => {
 
         const deleteButton = componentCreatorModule.createDeleteButton(1);
 
-        expect(createElementSpy).toHaveBeenCalledWith("button");
+        expect(createElementSpy).toHaveBeenCalledWith("span");
         expect(deleteButton).toBe(mockDeleteButton);
         expect(deleteButton.id).toBe("DeleteButton-1");
+        expect(deleteButton.className).toBe("icon-btn-secondary icon-delete");
         expect(mockEventListener).toHaveBeenCalledWith("click", expect.any(Function));
     });
 });
@@ -182,9 +184,9 @@ describe("componentCreator → createPreviewLabel", () => {
 
         expect(createElementSpy).toHaveBeenCalledWith("span");
         expect(previewLabel).toBeDefined();
-        expect(previewLabel.style.backgroundColor).not.toBeDefined();
-        expect(previewLabel.style.color).not.toBeDefined();
-        expect(previewLabel.innerText).not.toBeDefined();
+        expect(previewLabel.style.backgroundColor).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.backgroundColour);
+        expect(previewLabel.style.color).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.textColour);
+        expect(previewLabel.innerText).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.jiraStatusLabel);
     });
 
     it("should not set preview label when key is not supplied", () => {
@@ -195,9 +197,9 @@ describe("componentCreator → createPreviewLabel", () => {
 
         expect(createElementSpy).toHaveBeenCalledWith("span");
         expect(previewLabel).toBeDefined();
-        expect(previewLabel.style.backgroundColor).not.toBeDefined();
-        expect(previewLabel.style.color).not.toBeDefined();
-        expect(previewLabel.innerText).not.toBeDefined();
+        expect(previewLabel.style.backgroundColor).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.backgroundColour);
+        expect(previewLabel.style.color).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.textColour);
+        expect(previewLabel.innerText).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.jiraStatusLabel);
     });
 
     it("should not set preview label when key and configuration is not supplied", () => {
@@ -207,46 +209,46 @@ describe("componentCreator → createPreviewLabel", () => {
 
         expect(createElementSpy).toHaveBeenCalledWith("span");
         expect(previewLabel).toBeDefined();
-        expect(previewLabel.style.backgroundColor).not.toBeDefined();
-        expect(previewLabel.style.color).not.toBeDefined();
-        expect(previewLabel.innerText).not.toBeDefined();
+        expect(previewLabel.style.backgroundColor).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.backgroundColour);
+        expect(previewLabel.style.color).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.textColour);
+        expect(previewLabel.innerText).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.jiraStatusLabel);
     });
 });
     
-describe("componentCreator → createLineBreak", () => {
+describe("componentCreator → createTableCell", () => {
     beforeEach(() => {
         jest.resetAllMocks();
     });
 
     it.each([
-        [{ className: "mockBr" }],
+        [{ className: "td" }],
         [null],
         [undefined],
-    ])("should create a line break br %o", (mockBrValue) => {
-        createElementSpy.mockReturnValueOnce(mockBrValue);        
+    ])("should create a table cell td %o", (mockTdValue) => {
+        createElementSpy.mockReturnValueOnce(mockTdValue);        
 
-        const lineBreak = componentCreatorModule.createLineBreak();
+        const lineBreak = componentCreatorModule.createTableCell();
 
-        expect(lineBreak).toBe(mockBrValue);
-        expect(createElementSpy).toHaveBeenCalledWith("br");
+        expect(lineBreak).toBe(mockTdValue);
+        expect(createElementSpy).toHaveBeenCalledWith("td");
     });
 });
 
-describe("componentCreator → createDiv", () => {
+describe("componentCreator → createTableRow", () => {
     beforeEach(() => {
         jest.resetAllMocks();
     });
 
     it.each([
-        [{ className: "mockDiv" }],
+        [{ className: "tr" }],
         [null],
         [undefined],
-    ])("should create a div %o", (mockDivValue) => {
-        createElementSpy.mockReturnValueOnce(mockDivValue);        
+    ])("should create a table row tr %o", (mockTrValue) => {
+        createElementSpy.mockReturnValueOnce(mockTrValue);        
 
-        const div = componentCreatorModule.createDiv();
+        const div = componentCreatorModule.createTableRow();
 
-        expect(div).toBe(mockDivValue);
-        expect(createElementSpy).toHaveBeenCalledWith("div");
+        expect(div).toBe(mockTrValue);
+        expect(createElementSpy).toHaveBeenCalledWith("tr");
     });
 });

@@ -3,8 +3,8 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
 	entry: {
-	  "background": ["./src/background/index.js", "./src/styles/index.scss"],
-	  "options": ["./src/options/index.js"],
+	  "background": ["./src/background/index.js"],
+	  "options": ["./src/options/index.js", "./src/styles/options.scss"],
 	},
 	output: {
 		path: path.resolve(__dirname, "dist"),
@@ -19,7 +19,7 @@ module.exports = {
 					{
 						loader: "file-loader",
 						options: {
-							name: "content.css",
+							name: "[name].css",
 						}
 					},
 					{

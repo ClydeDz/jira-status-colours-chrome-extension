@@ -1,19 +1,19 @@
 import { getElementById } from "../common/document";
 import { setStorage } from "../common/storage";
 import { createRow } from "./componentCreator";
-import { presetConfiguration, rowCount, chromeSyncStorageKey, incrementRowCount } from "../common/settings";
+import { PRESET_CONFIGURATION, ROW_COUNT, CHROME_SYNC_STORAGE_KEY, incrementRowCount } from "../common/settings";
 import * as self from "./events";
 
 export function addConfigurationRow() {
     incrementRowCount();
-    const configuration = getElementById("Configuration");
-    createRow(rowCount, configuration, undefined);
+    const parentElement = getElementById("Configuration");
+    createRow(ROW_COUNT, parentElement, undefined);
 }
 
 export function saveConfiguration() {
     const updatedConfiguration = {};
 
-    for(var i=0; i <= rowCount; i++) {
+    for(var i=0; i <= ROW_COUNT; i++) {
         const previewPane = getElementById(`SampleOutput-${i}`);
         const backgroundColourPicker = getElementById(`BackgroundColour-${i}`);
         const textColourPicker = getElementById(`TextColour-${i}`);
@@ -31,16 +31,16 @@ export function saveConfiguration() {
             textColour: textColourPicker.value
         };
     }
-    setStorage(chromeSyncStorageKey, updatedConfiguration);
+    setStorage(CHROME_SYNC_STORAGE_KEY, updatedConfiguration);
 }
 
 export function startup(result) {
-    const savedConfiguration = result || presetConfiguration;        
+    const savedConfiguration = result || PRESET_CONFIGURATION;        
     const parentElement = getElementById("Configuration");
 
     for (let key of Object.keys(savedConfiguration)) {
         incrementRowCount();
-        createRow(rowCount, parentElement, savedConfiguration[key], key);
+        createRow(ROW_COUNT, parentElement, savedConfiguration[key], key);
     }
 }
 

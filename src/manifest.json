@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
-    "name": "jira-status-colours",
-    "description": "",
+    "name": "Jira Status Colours",
+    "description": "Customize the colours of your Jira status labels.",
     "version": "0.0.1",
     "author": "Clyde D'Souza",
     "icons": {
@@ -15,8 +15,7 @@
     ],
     "content_scripts": [{
       "matches": ["*://*.atlassian.net/*"],
-      "js": ["background.js"],
-      "css": ["content.css"]
+      "js": ["background.js"]
     }]    
   }
   
