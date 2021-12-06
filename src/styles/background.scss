@@ -33,13 +33,41 @@ header {
 
 main {
     margin: 0 8px;
-    padding: 9px;
+    padding: 9px 9px 60px 9px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 11px 15px;
+    height: 21px;
+    text-align: left;
+    background-color: $light-gray;
+    font-size: small;
+}
+
+.link-separator::after {
+    content: "/";
+    margin: 0 3px 0 6px;
+    opacity: 0.5;
+    color: $dark-gray;
+}
+
+a {
+ color: $dark-gray;
+ text-decoration: none;
+
+ &:hover, &:focus {
+    color: $blue;
+    text-decoration: underline;
+ }   
 }
 
 .product-banner {
     display: inline-block;
     width: 100%;
-    margin: 27px 18px 27px 0px;
+    margin: 27px 17px 27px 0px;
 
     img {
         float: left;
