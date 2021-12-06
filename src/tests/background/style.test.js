@@ -14,7 +14,7 @@ describe("style → applyStyle", () => {
 
     it.each([
         [null], 
-        [settingsModule.presetConfiguration]
+        [settingsModule.PRESET_CONFIGURATION]
     ])("should not apply style if no jira status labels found", (savedConfiguration) => {
         getJiraStatusLabelsSpy.mockReturnValue([]);
 
@@ -25,7 +25,7 @@ describe("style → applyStyle", () => {
 
     it.each([
         [null], 
-        [settingsModule.presetConfiguration]
+        [settingsModule.PRESET_CONFIGURATION]
     ])("should apply style for one jira status label after matching %s", (savedConfiguration) => {
         const mockJiraStatusLabels = [
             {
@@ -35,7 +35,7 @@ describe("style → applyStyle", () => {
                 innerText: "Other",
             }
         ];
-        const inProgress = settingsModule.presetConfiguration["IN PROGRESS"];
+        const inProgress = settingsModule.PRESET_CONFIGURATION["IN PROGRESS"];
         getJiraStatusLabelsSpy.mockReturnValue(mockJiraStatusLabels);
 
         styleModule.applyStyle(savedConfiguration);
@@ -45,7 +45,7 @@ describe("style → applyStyle", () => {
 
     it.each([
         [null], 
-        [settingsModule.presetConfiguration]
+        [settingsModule.PRESET_CONFIGURATION]
     ])("should apply style to two jira status labels after matching", (savedConfiguration) => {
         const mockJiraStatusLabels = [
             {
@@ -55,8 +55,8 @@ describe("style → applyStyle", () => {
                 innerText: "Backlog",
             }
         ];
-        const inProgress = settingsModule.presetConfiguration["IN PROGRESS"];
-        const backlog = settingsModule.presetConfiguration["BACKLOG"];
+        const inProgress = settingsModule.PRESET_CONFIGURATION["IN PROGRESS"];
+        const backlog = settingsModule.PRESET_CONFIGURATION["BACKLOG"];
         getJiraStatusLabelsSpy.mockReturnValue(mockJiraStatusLabels);
 
         styleModule.applyStyle(savedConfiguration);
@@ -67,7 +67,7 @@ describe("style → applyStyle", () => {
 
     it.each([
         [null], 
-        [settingsModule.presetConfiguration]
+        [settingsModule.PRESET_CONFIGURATION]
     ])("should not apply style to jira status labels after no match found", (savedConfiguration) => {
         const mockJiraStatusLabels = [
             {

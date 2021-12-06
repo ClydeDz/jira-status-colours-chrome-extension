@@ -20,9 +20,9 @@ describe("settings", () => {
   });
 
   test("has preset configuration", () => {      
-    expect(settingsModule.presetConfiguration["IN PROGRESS"]).toBeDefined();
-    expect(settingsModule.presetConfiguration["DONE"]).toBeDefined();
-    expect(settingsModule.presetConfiguration["BACKLOG"]).toBeDefined();
+    expect(settingsModule.PRESET_CONFIGURATION["IN PROGRESS"]).toBeDefined();
+    expect(settingsModule.PRESET_CONFIGURATION["DONE"]).toBeDefined();
+    expect(settingsModule.PRESET_CONFIGURATION["BACKLOG"]).toBeDefined();
   });
 
   test("placeholder configuration is defined", () => {      

@@ -1,7 +1,7 @@
 import { getElementById } from "../common/document";
 import { setStorage } from "../common/storage";
 import { createRow } from "./componentCreator";
-import { presetConfiguration, ROW_COUNT, CHROME_SYNC_STORAGE_KEY, incrementRowCount } from "../common/settings";
+import { PRESET_CONFIGURATION, ROW_COUNT, CHROME_SYNC_STORAGE_KEY, incrementRowCount } from "../common/settings";
 import * as self from "./events";
 
 export function addConfigurationRow() {
@@ -35,7 +35,7 @@ export function saveConfiguration() {
 }
 
 export function startup(result) {
-    const savedConfiguration = result || presetConfiguration;        
+    const savedConfiguration = result || PRESET_CONFIGURATION;        
     const parentElement = getElementById("Configuration");
 
     for (let key of Object.keys(savedConfiguration)) {

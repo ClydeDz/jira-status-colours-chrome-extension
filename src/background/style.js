@@ -1,8 +1,8 @@
-import { presetConfiguration } from "../common/settings";
+import { PRESET_CONFIGURATION } from "../common/settings";
 import { getJiraStatusLabels, updateJiraStatusStyle } from "../common/document";
 
 export function applyStyle(result) {
-    const savedConfiguration = result || presetConfiguration;
+    const savedConfiguration = result || PRESET_CONFIGURATION;
     const elements = getJiraStatusLabels();
     
     for (let i = 0; i < elements.length; i++) {

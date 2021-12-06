@@ -5,7 +5,7 @@ export const incrementRowCount = () => {
     ROW_COUNT++;
 }
 
-export const presetConfiguration = {
+export const PRESET_CONFIGURATION = {
     "IN PROGRESS": {
         backgroundColour: "#F0B719",
         textColour: "#000000"

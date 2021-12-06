@@ -39,7 +39,7 @@ describe("events → addConfigurationRow", () => {
 
 describe("events → startup", () => {
     const mockConfiguration = {
-        ...settingsModule.presetConfiguration,
+        ...settingsModule.PRESET_CONFIGURATION,
         "OTHER": {
             backgroundColour: "other",
             textColour: "other"
