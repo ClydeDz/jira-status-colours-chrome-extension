@@ -1,7 +1,7 @@
 import { getElementById } from "../common/document";
 import { setStorage } from "../common/storage";
 import { createRow } from "./componentCreator";
-import { presetConfiguration, rowCount, chromeSyncStorageKey, incrementRowCount } from "../common/settings";
+import { presetConfiguration, rowCount, CHROME_SYNC_STORAGE_KEY, incrementRowCount } from "../common/settings";
 import * as self from "./events";
 
 export function addConfigurationRow() {
@@ -31,7 +31,7 @@ export function saveConfiguration() {
             textColour: textColourPicker.value
         };
     }
-    setStorage(chromeSyncStorageKey, updatedConfiguration);
+    setStorage(CHROME_SYNC_STORAGE_KEY, updatedConfiguration);
 }
 
 export function startup(result) {

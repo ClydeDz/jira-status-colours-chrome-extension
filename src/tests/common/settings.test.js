@@ -6,7 +6,7 @@ describe("settings", () => {
   }); 
 
   test("chrome storage key is set to the right value", () => {      
-    expect(settingsModule.chromeSyncStorageKey).toBe("Jira-Status-Colours-Configuration");
+    expect(settingsModule.CHROME_SYNC_STORAGE_KEY).toBe("Jira-Status-Colours-Configuration");
   });
 
   test("can fetch row count value", () => {      

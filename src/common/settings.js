@@ -1,4 +1,4 @@
-export const chromeSyncStorageKey = "Jira-Status-Colours-Configuration";
+export const CHROME_SYNC_STORAGE_KEY = "Jira-Status-Colours-Configuration";
 export let rowCount = 0;
 
 export const incrementRowCount = () => {

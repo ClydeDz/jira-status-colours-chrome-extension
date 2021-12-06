@@ -127,7 +127,7 @@ describe("events → saveConfiguration", () => {
         
         eventsModule.saveConfiguration();
         
-        expect(setStorageSpy).toHaveBeenCalledWith(settingsModule.chromeSyncStorageKey, {});        
+        expect(setStorageSpy).toHaveBeenCalledWith(settingsModule.CHROME_SYNC_STORAGE_KEY, {});        
     });
 
     it("saves configuration when row found", () => {
@@ -145,7 +145,7 @@ describe("events → saveConfiguration", () => {
         
         eventsModule.saveConfiguration();
         
-        expect(setStorageSpy).toHaveBeenCalledWith(settingsModule.chromeSyncStorageKey, { "TEST" : {
+        expect(setStorageSpy).toHaveBeenCalledWith(settingsModule.CHROME_SYNC_STORAGE_KEY, { "TEST" : {
             backgroundColour: "backgroundColor",
             textColour: "textColor"
         }});        
@@ -185,7 +185,7 @@ describe("events → saveConfiguration", () => {
         
         eventsModule.saveConfiguration();
         
-        expect(setStorageSpy).toHaveBeenCalledWith(settingsModule.chromeSyncStorageKey, expectedOutput);        
+        expect(setStorageSpy).toHaveBeenCalledWith(settingsModule.CHROME_SYNC_STORAGE_KEY, expectedOutput);        
     });
 
     it.each([
@@ -201,7 +201,7 @@ describe("events → saveConfiguration", () => {
         
         eventsModule.saveConfiguration();
         
-        expect(setStorageSpy).toHaveBeenCalledWith(settingsModule.chromeSyncStorageKey, {});        
+        expect(setStorageSpy).toHaveBeenCalledWith(settingsModule.CHROME_SYNC_STORAGE_KEY, {});        
     });
 
     it("saves empty configuration when preview panel doesn't have required properties", () => {
@@ -218,6 +218,6 @@ describe("events → saveConfiguration", () => {
         
         eventsModule.saveConfiguration();
         
-        expect(setStorageSpy).toHaveBeenCalledWith(settingsModule.chromeSyncStorageKey, {});        
+        expect(setStorageSpy).toHaveBeenCalledWith(settingsModule.CHROME_SYNC_STORAGE_KEY, {});        
     });
 });
