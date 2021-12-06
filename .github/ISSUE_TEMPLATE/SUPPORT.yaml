@@ -23,8 +23,3 @@ body:
     attributes:
       label: Extension version
       placeholder: ex. Jira Status Colours 1.0.0
-  - type: input
-    id: amazonpage
-    attributes:
-      label: Amazon website URL
-      placeholder: ex. https://smile.amazon.com/Mama-Tell-Me-Story-Collection/dp/B094259YQK/

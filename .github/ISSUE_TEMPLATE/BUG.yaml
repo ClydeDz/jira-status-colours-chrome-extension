@@ -35,10 +35,3 @@ body:
       placeholder: ex. Jira Status Colours 1.0.0
     validations:
       required: true  
-  - type: input
-    id: amazonpage
-    attributes:
-      label: Amazon website URL
-      placeholder: ex. https://smile.amazon.com/Mama-Tell-Me-Story-Collection/dp/B094259YQK/
-    validations:
-      required: true  
