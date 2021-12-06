@@ -1,4 +1,5 @@
 import { appendChild, createElement, getElementById } from "../common/document";
+import { PLACEHOLDER_CONFIGURATION } from "../common/settings";
 import * as self from "./componentCreator";
 
 export function createJiraStatusInput(id, defaultSettingKey) {
@@ -9,10 +10,7 @@ export function createJiraStatusInput(id, defaultSettingKey) {
     jiraStatusInput.addEventListener("change", (event) => {
         getElementById(`SampleOutput-${id}`).innerText = event.target.value;
     });    
-
-    if(defaultSettingKey) {
-        jiraStatusInput.value = defaultSettingKey;
-    }   
+    jiraStatusInput.value = defaultSettingKey ? defaultSettingKey : PLACEHOLDER_CONFIGURATION.jiraStatusLabel;
 
     return jiraStatusInput;
 }
@@ -24,11 +22,8 @@ export function createBackgroundColourPickerInput(id, defaultSettingValue) {
     backgroundColourInput.addEventListener("change", (event) => {
         getElementById(`SampleOutput-${id}`).style.backgroundColor = event.target.value;
     });
-
-    if(defaultSettingValue) {
-        backgroundColourInput.value = defaultSettingValue.backgroundColour;
-    }
-
+    backgroundColourInput.value = defaultSettingValue ? defaultSettingValue.backgroundColour : PLACEHOLDER_CONFIGURATION.backgroundColour;
+    
     return backgroundColourInput;
 }
 
@@ -39,11 +34,8 @@ export function createTextColourPickerInput(id, defaultSettingValue) {
     textColourInput.addEventListener("change", (event) => {
         getElementById(`SampleOutput-${id}`).style.color = event.target.value;
     });
-
-    if(defaultSettingValue) {
-        textColourInput.value = defaultSettingValue.textColour;
-    }
-
+    textColourInput.value = defaultSettingValue ?defaultSettingValue.textColour :  PLACEHOLDER_CONFIGURATION.textColour;
+    
     return textColourInput;
 }
 
@@ -65,11 +57,10 @@ export function createPreviewLabel(id, defaultSettingValue, defaultSettingKey) {
     sampleOutput.id = `SampleOutput-${id}`;
     sampleOutput.className = "preview-label";
 
-    if(defaultSettingValue && defaultSettingKey) {
-        sampleOutput.innerText = defaultSettingKey;
-        sampleOutput.style.backgroundColor = defaultSettingValue.backgroundColour;
-        sampleOutput.style.color = defaultSettingValue.textColour;
-    }
+    const doesConfigurationExist = defaultSettingKey && defaultSettingValue;
+    sampleOutput.innerText = doesConfigurationExist ? defaultSettingKey : PLACEHOLDER_CONFIGURATION.jiraStatusLabel;
+    sampleOutput.style.backgroundColor = doesConfigurationExist ? defaultSettingValue.backgroundColour : PLACEHOLDER_CONFIGURATION.backgroundColour;
+    sampleOutput.style.color = doesConfigurationExist ? defaultSettingValue.textColour : PLACEHOLDER_CONFIGURATION.textColour;
 
     return sampleOutput;
 }

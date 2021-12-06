@@ -1,4 +1,5 @@
 import * as componentCreatorModule from "../../options/componentCreator";
+import * as settingsModule from "../../common/settings";
 import * as documentModule from "../../common/document";
 
 const createElementSpy = jest.spyOn(documentModule, "createElement")
@@ -27,14 +28,14 @@ describe("componentCreator → createJiraStatusInput", () => {
         expect(mockEventListener).toHaveBeenCalledWith("change", expect.any(Function));
     });
 
-    it("should not set value", () => {
+    it("should set value to placeholder when no key is provided", () => {
         const mockEventListener = jest.fn();
         const mockInput = {element: "input", addEventListener: mockEventListener};
         createElementSpy.mockReturnValueOnce(mockInput);
 
         const jiraStatusInput = componentCreatorModule.createJiraStatusInput(1, undefined);
 
-        expect(jiraStatusInput.value).not.toBeDefined();
+        expect(jiraStatusInput.value).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.jiraStatusLabel);
     });
 
     it("should set value", () => {
@@ -71,14 +72,14 @@ describe("componentCreator → createBackgroundColourPickerInput", () => {
         expect(mockEventListener).toHaveBeenCalledWith("change", expect.any(Function));
     });
 
-    it("should not set value", () => {
+    it("should set value to placeholder when no configuration is provided", () => {
         const mockEventListener = jest.fn();
         const mockInput = {element: "input", addEventListener: mockEventListener};
         createElementSpy.mockReturnValueOnce(mockInput);
 
         const backgroundColourPicker = componentCreatorModule.createBackgroundColourPickerInput(1, undefined);
 
-        expect(backgroundColourPicker.value).not.toBeDefined();
+        expect(backgroundColourPicker.value).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.backgroundColour);
     });
 
     it("should set value", () => {
@@ -115,14 +116,14 @@ describe("componentCreator → createTextColourPickerInput", () => {
         expect(mockEventListener).toHaveBeenCalledWith("change", expect.any(Function));
     });
 
-    it("should not set value", () => {
+    it("should set value to placeholder when no configuration is provided", () => {
         const mockEventListener = jest.fn();
         const mockInput = {element: "deleteButton", addEventListener: mockEventListener};
         createElementSpy.mockReturnValueOnce(mockInput);
 
         const textColourPicker = componentCreatorModule.createTextColourPickerInput(1, undefined);
 
-        expect(textColourPicker.value).not.toBeDefined();
+        expect(textColourPicker.value).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.textColour);
     });
 
     it("should set value", () => {
@@ -183,9 +184,9 @@ describe("componentCreator → createPreviewLabel", () => {
 
         expect(createElementSpy).toHaveBeenCalledWith("span");
         expect(previewLabel).toBeDefined();
-        expect(previewLabel.style.backgroundColor).not.toBeDefined();
-        expect(previewLabel.style.color).not.toBeDefined();
-        expect(previewLabel.innerText).not.toBeDefined();
+        expect(previewLabel.style.backgroundColor).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.backgroundColour);
+        expect(previewLabel.style.color).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.textColour);
+        expect(previewLabel.innerText).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.jiraStatusLabel);
     });
 
     it("should not set preview label when key is not supplied", () => {
@@ -196,9 +197,9 @@ describe("componentCreator → createPreviewLabel", () => {
 
         expect(createElementSpy).toHaveBeenCalledWith("span");
         expect(previewLabel).toBeDefined();
-        expect(previewLabel.style.backgroundColor).not.toBeDefined();
-        expect(previewLabel.style.color).not.toBeDefined();
-        expect(previewLabel.innerText).not.toBeDefined();
+        expect(previewLabel.style.backgroundColor).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.backgroundColour);
+        expect(previewLabel.style.color).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.textColour);
+        expect(previewLabel.innerText).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.jiraStatusLabel);
     });
 
     it("should not set preview label when key and configuration is not supplied", () => {
@@ -208,9 +209,9 @@ describe("componentCreator → createPreviewLabel", () => {
 
         expect(createElementSpy).toHaveBeenCalledWith("span");
         expect(previewLabel).toBeDefined();
-        expect(previewLabel.style.backgroundColor).not.toBeDefined();
-        expect(previewLabel.style.color).not.toBeDefined();
-        expect(previewLabel.innerText).not.toBeDefined();
+        expect(previewLabel.style.backgroundColor).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.backgroundColour);
+        expect(previewLabel.style.color).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.textColour);
+        expect(previewLabel.innerText).toBe(settingsModule.PLACEHOLDER_CONFIGURATION.jiraStatusLabel);
     });
 });
     

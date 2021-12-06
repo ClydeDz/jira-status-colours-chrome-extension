@@ -19,3 +19,9 @@ export const presetConfiguration = {
         textColour: "#FFFFFF"
     }
 };
+
+export const PLACEHOLDER_CONFIGURATION = {
+    jiraStatusLabel: "STATUS",
+    backgroundColour: "#ff67f3",
+    textColour: "#080808"
+}

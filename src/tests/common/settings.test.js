@@ -24,4 +24,10 @@ describe("settings", () => {
     expect(settingsModule.presetConfiguration["DONE"]).toBeDefined();
     expect(settingsModule.presetConfiguration["BACKLOG"]).toBeDefined();
   });
+
+  test("placeholder configuration is defined", () => {      
+    expect(settingsModule.PLACEHOLDER_CONFIGURATION.jiraStatusLabel).toBeDefined();
+    expect(settingsModule.PLACEHOLDER_CONFIGURATION.textColour).toBeDefined();
+    expect(settingsModule.PLACEHOLDER_CONFIGURATION.backgroundColour).toBeDefined();
+  });
 });
