@@ -1,4 +1,5 @@
 export const CHROME_SYNC_STORAGE_KEY = "Jira-Status-Colours-Configuration";
+export const BACKGROUND_SCRIPT_INTERVAL = 1000;
 export let ROW_COUNT = 0;
 
 export const incrementRowCount = () => {

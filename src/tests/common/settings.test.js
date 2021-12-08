@@ -9,6 +9,10 @@ describe("settings", () => {
     expect(settingsModule.CHROME_SYNC_STORAGE_KEY).toBe("Jira-Status-Colours-Configuration");
   });
 
+  test("background script interval is set to the right value", () => {      
+    expect(settingsModule.BACKGROUND_SCRIPT_INTERVAL).toBe(1000);
+  });
+
   test("can fetch row count value", () => {      
     expect(settingsModule.ROW_COUNT).toBe(0);
   });
